@@ -6,7 +6,7 @@ const EventTab = ({navigation, route}) => {
       <Button
         title="活动内部Stack"
         onPress={() =>
-          navigation.navigate('Screen_E', {name: '李华', id: '18'})
+          navigation.navigate('MineTab', {name: '李华', id: '18'})
         }></Button>
     </View>
   );

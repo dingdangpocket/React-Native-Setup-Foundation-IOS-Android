@@ -20,22 +20,22 @@ const Tab = createBottomTabNavigator();
 
 const HomeTabRoutes = [
   {
-    name: '首页',
+    name: 'HomeTab',
     component: HomeTab,
     option: {title: '首页'},
   },
   {
-    name: '探索',
+    name: 'DiscoveryTab',
     component: DiscoveryTab,
     option: {title: '探索'},
   },
   {
-    name: '活动',
+    name: 'EventTab',
     component: EventTab,
     option: {title: '活动'},
   },
   {
-    name: '我的',
+    name: 'MineTab',
     component: MineTab,
     option: {title: '我的'},
   },
@@ -61,7 +61,7 @@ const HomeTabs = () => {
       screenOptions={({route}) => ({
         tabBarIcon: ({focused, size, color}) => {
           let icon;
-          if (route.name === '首页') {
+          if (route.name === 'HomeTab') {
             icon = focused ? (
               <Image
                 source={require('./src/static/key1.png')}
@@ -73,7 +73,7 @@ const HomeTabs = () => {
                 style={{width: 27.5, height: 25}}
               />
             );
-          } else if (route.name === '探索') {
+          } else if (route.name === 'DiscoveryTab') {
             icon = focused ? (
               <Image
                 source={require('./src/static/my1.png')}
@@ -85,7 +85,7 @@ const HomeTabs = () => {
                 style={{width: 29, height: 25}}
               />
             );
-          } else if (route.name == '活动') {
+          } else if (route.name == 'EventTab') {
             icon = focused ? (
               <Image
                 source={require('./src/static/my1.png')}
@@ -97,7 +97,7 @@ const HomeTabs = () => {
                 style={{width: 29, height: 25}}
               />
             );
-          } else if (route.name == '我的') {
+          } else if (route.name == 'MineTab') {
             icon = focused ? (
               <Image
                 source={require('./src/static/my1.png')}
@@ -114,7 +114,13 @@ const HomeTabs = () => {
         },
       })}>
       {HomeTabRoutes.map(item => {
-        return <Tab.Screen name={item.name} component={item.component} />;
+        return (
+          <Tab.Screen
+            name={item.name}
+            options={{title: item.option.title}}
+            component={item.component}
+          />
+        );
       })}
     </Tab.Navigator>
   );
