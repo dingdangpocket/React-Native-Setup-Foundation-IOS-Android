@@ -112,6 +112,7 @@ const HomeTabs = () => {
       {HomeTabRoutes.map(item => {
         return (
           <Tab.Screen
+            key={item.name}
             name={item.name}
             options={{title: item.option.title}}
             component={item.component}
@@ -137,6 +138,7 @@ const App = () => {
             {HomeStackRoutes.map(item => {
               return (
                 <Stack.Screen
+                  key={item.name}
                   name={item.name}
                   options={{
                     title: item.option.title,

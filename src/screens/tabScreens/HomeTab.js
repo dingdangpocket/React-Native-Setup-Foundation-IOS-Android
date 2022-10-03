@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 
 const HomeTab = ({navigation}) => {
+  console.log('2');
   const [current, setCurrent] = useState(0);
   const [optionList] = useState([
     {id: 0, content: '关注'},
