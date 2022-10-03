@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-const TabScreenA = ({navigation}) => {
+const HomeTab = ({navigation}) => {
   const [current, setCurrent] = useState(0);
   const [optionList] = useState([
     {id: 0, content: '关注'},
@@ -82,7 +82,7 @@ const TabScreenA = ({navigation}) => {
     </View>
   );
 };
-export default TabScreenA;
+export default HomeTab;
 let MainWidth = Dimensions.get('window').width;
 const styles = StyleSheet.create({
   codeBlock: {

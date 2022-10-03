@@ -6,16 +6,53 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
-import TabScreenA from './src/screens/tabScreens/TabScreenA'; //引入
-import TabScreenB from './src/screens/tabScreens/TabScreenB'; //引入
-import TabScreenC from './src/screens/tabScreens/TabScreenC'; //引入
 import IncidentDescScreen from './src/screens/home/IncidentDescScreen'; //引入
 import TheoryDescScreen from './src/screens/home/TheoryDescScreen'; //引入
+import HomeTab from './src/screens/tabScreens/HomeTab'; //引入
+import DiscoveryTab from './src/screens/tabScreens/DiscoveryTab'; //引入
+import MineTab from './src/screens/tabScreens/MineTab'; //引入
+import EventTab from './src/screens/tabScreens/EventTab'; //引入
 import {createStackNavigator} from '@react-navigation/stack'; //引入
 import {NavigationContainer} from '@react-navigation/native'; //引入
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+
+const HomeTabRoutes = [
+  {
+    name: '首页',
+    component: HomeTab,
+    option: {title: '首页'},
+  },
+  {
+    name: '探索',
+    component: DiscoveryTab,
+    option: {title: '探索'},
+  },
+  {
+    name: '活动',
+    component: EventTab,
+    option: {title: '活动'},
+  },
+  {
+    name: '我的',
+    component: MineTab,
+    option: {title: '我的'},
+  },
+];
+
+const HomeStackRoutes = [
+  {
+    name: 'TheoryDescScreen',
+    component: TheoryDescScreen,
+    option: {title: '首页理论页面'},
+  },
+  {
+    name: 'IncidentDescScreen',
+    component: IncidentDescScreen,
+    option: {title: '首页实践页面'},
+  },
+];
 
 const HomeTabs = () => {
   return (
@@ -36,7 +73,7 @@ const HomeTabs = () => {
                 style={{width: 27.5, height: 25}}
               />
             );
-          } else if (route.name === '我的') {
+          } else if (route.name === '探索') {
             icon = focused ? (
               <Image
                 source={require('./src/static/my1.png')}
@@ -48,7 +85,19 @@ const HomeTabs = () => {
                 style={{width: 29, height: 25}}
               />
             );
-          } else if (route.name == '热门') {
+          } else if (route.name == '活动') {
+            icon = focused ? (
+              <Image
+                source={require('./src/static/my1.png')}
+                style={{width: 31, height: 25}}
+              />
+            ) : (
+              <Image
+                source={require('./src/static/my0.png')}
+                style={{width: 29, height: 25}}
+              />
+            );
+          } else if (route.name == '我的') {
             icon = focused ? (
               <Image
                 source={require('./src/static/my1.png')}
@@ -64,25 +113,12 @@ const HomeTabs = () => {
           return icon;
         },
       })}>
-      <Tab.Screen name="首页" component={TabScreenA} />
-      <Tab.Screen name="热门" component={TabScreenB} />
-      <Tab.Screen name="我的" component={TabScreenC} />
+      {HomeTabRoutes.map(item => {
+        return <Tab.Screen name={item.name} component={item.component} />;
+      })}
     </Tab.Navigator>
   );
 };
-
-const HomeRoutes = [
-  {
-    name: 'TheoryDescScreen',
-    component: TheoryDescScreen,
-    option: {title: '首页理论页面'},
-  },
-  {
-    name: 'IncidentDescScreen',
-    component: IncidentDescScreen,
-    option: {title: '首页实践页面'},
-  },
-];
 
 import {Provider} from 'react-redux';
 import {Store} from './src/redux/store';
@@ -98,7 +134,7 @@ const App = () => {
               component={HomeTabs}
               options={{header: () => null, title: '首页'}}
             />
-            {HomeRoutes.map(item => {
+            {HomeStackRoutes.map(item => {
               return (
                 <Stack.Screen
                   name={item.name}
