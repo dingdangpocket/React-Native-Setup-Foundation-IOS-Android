@@ -1,20 +1,16 @@
 import React from 'react';
-import {
-  Image,
-  StyleSheet,
-  SafeAreaView,
-  Text,
-  TouchableOpacity,
-} from 'react-native';
-import IncidentDescScreen from './src/screens/home/IncidentDescScreen'; //引入
-import TheoryDescScreen from './src/screens/home/TheoryDescScreen'; //引入
-import HomeTab from './src/screens/tabScreens/HomeTab'; //引入
-import DiscoveryTab from './src/screens/tabScreens/DiscoveryTab'; //引入
-import MineTab from './src/screens/tabScreens/MineTab'; //引入
-import EventTab from './src/screens/tabScreens/EventTab'; //引入
-import {createStackNavigator} from '@react-navigation/stack'; //引入
-import {NavigationContainer} from '@react-navigation/native'; //引入
+import {Image, StyleSheet, SafeAreaView} from 'react-native';
+import IncidentDescScreen from './src/screens/home/IncidentDescScreen';
+import TheoryDescScreen from './src/screens/home/TheoryDescScreen';
+import HomeTab from './src/screens/tabScreens/HomeTab';
+import DiscoveryTab from './src/screens/tabScreens/DiscoveryTab';
+import MineTab from './src/screens/tabScreens/MineTab';
+import EventTab from './src/screens/tabScreens/EventTab';
+import {createStackNavigator} from '@react-navigation/stack';
+import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {Provider} from 'react-redux';
+import {Store} from './src/redux/store';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -59,7 +55,7 @@ const HomeTabs = () => {
     <Tab.Navigator
       tabBarOptions={{activeTintColor: '#972F97', inactiveTintColor: 'gray'}}
       screenOptions={({route}) => ({
-        tabBarIcon: ({focused, size, color}) => {
+        tabBarIcon: ({focused}) => {
           let icon;
           if (route.name === 'HomeTab') {
             icon = focused ? (
@@ -126,12 +122,10 @@ const HomeTabs = () => {
   );
 };
 
-import {Provider} from 'react-redux';
-import {Store} from './src/redux/store';
 const App = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <Provider store={Store}>
+    <Provider store={Store}>
+      <SafeAreaView style={styles.container}>
         <NavigationContainer>
           <Stack.Navigator>
             {/* 将tab页装载在Stack页面中; */}
@@ -153,8 +147,8 @@ const App = () => {
             })}
           </Stack.Navigator>
         </NavigationContainer>
-      </Provider>
-    </SafeAreaView>
+      </SafeAreaView>
+    </Provider>
   );
 };
 const styles = StyleSheet.create({

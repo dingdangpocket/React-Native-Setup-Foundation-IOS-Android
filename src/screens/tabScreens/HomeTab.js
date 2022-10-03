@@ -63,13 +63,15 @@ const HomeTab = ({navigation}) => {
           <View style={styles.focusListContainer}>
             <TouchableOpacity
               activeOpacity={0.9}
+              style={styles.btn}
               onPress={() => navigation.navigate('TheoryDescScreen')}>
-              <Text style={styles.optionBox}>理论</Text>
+              <Text style={{color: 'white'}}>React-native</Text>
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.9}
+              style={styles.btn}
               onPress={() => navigation.navigate('IncidentDescScreen')}>
-              <Text style={styles.optionBox}>实践</Text>
+              <Text style={{color: 'white'}}>实践</Text>
             </TouchableOpacity>
           </View>
         ) : null}
@@ -130,13 +132,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  btn: {
+    height: 60,
+    width: 85,
+    margin: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: 15,
+    borderBottomWidth: 2,
+    borderBottomColor: '#972F97',
+    backgroundColor: 'rgba(151,47,151, 0.7)',
+  },
   optionBox: {
     height: 60,
     width: 95,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    // marginStart: 2,
+    fontSize: 15,
     borderBottomWidth: 2,
     borderBottomColor: '#972F97',
     backgroundColor: 'rgba(151,47,151, 0.7)',
