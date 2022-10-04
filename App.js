@@ -13,6 +13,7 @@ import {Provider} from 'react-redux';
 import {Store} from './src/redux/store';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+//核心库;
 
 const HomeTabRoutes = [
   {
