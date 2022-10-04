@@ -69,7 +69,7 @@ const HomeTab = ({navigation}) => {
       } catch (error) {
         console.log('未被授权', error);
       }
-      //IOS如果点了不允许授权,getCurrentPosition自动进入Error;
+      //IOS如果点了不允许授权,getCurrentPosition自动会进入Error;
     }
   };
   return (
