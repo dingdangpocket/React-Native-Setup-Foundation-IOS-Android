@@ -7,6 +7,7 @@ import {
   ScrollView,
   Dimensions,
   TouchableOpacity,
+  PermissionsAndroid,
 } from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
 
@@ -21,16 +22,55 @@ const HomeTab = ({navigation}) => {
     {id: 5, content: '问题'},
   ]);
   //位置;
-  const requestLocationPermission = async () => {
-    Geolocation.getCurrentPosition(
-      info => console.log("hello",info),
-      error => {
-        console.log(error);
-      },
-      {
-        timeout: 2000,
-      },
-    );
+  const requestLocationPermission = async (success, failure) => {
+    if (Platform.OS === 'ios') {
+      Geolocation.setRNConfiguration({
+        authorizationLevel: 'whenInUse',
+      });
+      Geolocation.requestAuthorization();
+      return true;
+    }
+    if (Platform.OS === 'android') {
+      try {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+          {
+            title: '允许访问您的地理位置',
+            message: '我们将访问您的地理位置,以此为你推荐相关路线',
+          },
+        );
+
+        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+          console.log('可以使用地理位置');
+          return true;
+        } else {
+          console.log('不能使用地理位置');
+          return false;
+        }
+      } catch (err) {
+        console.log('不能使用地理位置');
+        return false;
+      }
+    }
+  };
+  const getCurrentPosition = async () => {
+    const hasLocationPermission = await requestLocationPermission();
+    if (hasLocationPermission) {
+      try {
+        Geolocation.getCurrentPosition(
+          info => console.log('已授权', info),
+          error => {
+            console.log('未授权', error);
+          },
+          {
+            timeout: 5000,
+          },
+        );
+      } catch (error) {
+        console.log('未被授权', error);
+      }
+      //IOS如果点了不允许授权,getCurrentPosition自动进入Error;
+    }
   };
   return (
     <View>
@@ -89,7 +129,7 @@ const HomeTab = ({navigation}) => {
             <TouchableOpacity
               activeOpacity={0.9}
               style={styles.btn}
-              onPress={() => requestLocationPermission()}>
+              onPress={() => getCurrentPosition()}>
               <Text style={{color: 'white'}}>位置</Text>
             </TouchableOpacity>
           </View>
