@@ -8,9 +8,9 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
+import Geolocation from '@react-native-community/geolocation';
 
 const HomeTab = ({navigation}) => {
-  console.log('2');
   const [current, setCurrent] = useState(0);
   const [optionList] = useState([
     {id: 0, content: '关注'},
@@ -20,6 +20,18 @@ const HomeTab = ({navigation}) => {
     {id: 4, content: '理论'},
     {id: 5, content: '问题'},
   ]);
+  //位置;
+  const requestLocationPermission = async () => {
+    Geolocation.getCurrentPosition(
+      info => console.log("hello",info),
+      error => {
+        console.log(error);
+      },
+      {
+        timeout: 2000,
+      },
+    );
+  };
   return (
     <View>
       <ScrollView horizontal={false}>
@@ -73,6 +85,12 @@ const HomeTab = ({navigation}) => {
               style={styles.btn}
               onPress={() => navigation.navigate('IncidentDescScreen')}>
               <Text style={{color: 'white'}}>实践</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              activeOpacity={0.9}
+              style={styles.btn}
+              onPress={() => requestLocationPermission()}>
+              <Text style={{color: 'white'}}>位置</Text>
             </TouchableOpacity>
           </View>
         ) : null}

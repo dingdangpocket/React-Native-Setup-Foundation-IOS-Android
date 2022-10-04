@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, StyleSheet, SafeAreaView} from 'react-native';
+import {Image, StyleSheet, SafeAreaView,} from 'react-native';
 import IncidentDescScreen from './src/screens/home/IncidentDescScreen';
 import TheoryDescScreen from './src/screens/home/TheoryDescScreen';
 import HomeTab from './src/screens/tabScreens/HomeTab';
@@ -11,10 +11,10 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Provider} from 'react-redux';
 import {Store} from './src/redux/store';
+
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 //核心库;
-
 const HomeTabRoutes = [
   {
     name: 'HomeTab',
@@ -125,6 +125,7 @@ const HomeTabs = () => {
 };
 
 const App = () => {
+
   return (
     <Provider store={Store}>
       <SafeAreaView style={styles.container}>
