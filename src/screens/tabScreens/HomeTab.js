@@ -21,7 +21,7 @@ const HomeTab = ({navigation}) => {
     {id: 4, content: '理论'},
     {id: 5, content: '问题'},
   ]);
-  //位置;
+  //定位-内部实现是通过HTML5的navigator;
   const requestLocationPermission = async (success, failure) => {
     if (Platform.OS === 'ios') {
       Geolocation.setRNConfiguration({
