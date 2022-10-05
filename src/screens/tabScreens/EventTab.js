@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
-import {CameraScreen} from 'react-native-camera-kit';
+// import {CameraScreen} from 'react-native-camera-kit';
 // import {RNCamera} from 'react-native-camera';
 const EventTab = ({navigation, route}) => {
   // const [type, setType] = useState('');
@@ -43,7 +43,7 @@ const EventTab = ({navigation, route}) => {
   };
   return (
     <View style={styles.container}>
-      <CameraScreen
+      {/* <CameraScreen
         actions={{rightButtonText: 'Done', leftButtonText: 'Cancel'}}
         onBottomButtonPressed={onBottomButtonPressed(EVENT)}
         flashImages={{
@@ -58,7 +58,7 @@ const EventTab = ({navigation, route}) => {
         torchOffImage={require('../../static/add1.png')} // optional, image for toggling off flash light
         hideControls={false} // (default false) optional, hides camera controls
         showCapturedImageCount={false} // (default false) optional, show count for photos taken during that capture session
-      />
+      /> */}
       {/* <RNCamera ref={cameraEl} type={type} style={styles.preview} />
       <View style={styles.topButtons}>
         <TouchableOpacity onPress={flipCamera} style={styles.flipButton}>

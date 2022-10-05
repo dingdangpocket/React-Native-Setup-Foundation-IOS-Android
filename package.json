@@ -17,8 +17,6 @@
     "@react-navigation/stack": "^5.x",
     "react": "17.0.2",
     "react-native": "0.66.4",
-    "react-native-camera": "^3.43.0",
-    "react-native-camera-kit": "^13.0.0",
     "react-native-gesture-handler": "^2.1.1",
     "react-native-reanimated": "^2.2.4",
     "react-native-safe-area-context": "^3.3.2",

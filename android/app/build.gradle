@@ -133,7 +133,7 @@ android {
     defaultConfig {
         applicationId 'com.awesometsproject'
         minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        targetSdkVersion 30
         versionCode 1
         versionName '1.0'
         missingDimensionStrategy 'react-native-camera', 'general' // <--- insert this line
