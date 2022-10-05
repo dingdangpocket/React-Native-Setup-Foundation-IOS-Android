@@ -11,6 +11,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Provider} from 'react-redux';
 import {Store} from './src/redux/store';
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['new NativeEventEmitter']); 
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
