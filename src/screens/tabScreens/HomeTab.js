@@ -118,13 +118,13 @@ const HomeTab = ({navigation}) => {
               activeOpacity={0.9}
               style={styles.btn}
               onPress={() => navigation.navigate('TheoryDescScreen')}>
-              <Text style={{color: 'white'}}>React-native</Text>
+              <Text style={{color: 'white'}}>网页</Text>
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.9}
               style={styles.btn}
               onPress={() => navigation.navigate('IncidentDescScreen')}>
-              <Text style={{color: 'white'}}>实践</Text>
+              <Text style={{color: 'white'}}>视频</Text>
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.9}

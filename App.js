@@ -45,12 +45,12 @@ const HomeStackRoutes = [
   {
     name: 'TheoryDescScreen',
     component: TheoryDescScreen,
-    option: {title: '首页理论页面'},
+    option: {title: 'WebView网页'},
   },
   {
     name: 'IncidentDescScreen',
     component: IncidentDescScreen,
-    option: {title: '首页实践页面'},
+    option: {title: '视频集成'},
   },
 ];
 
