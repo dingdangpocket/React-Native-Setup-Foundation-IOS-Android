@@ -17,7 +17,7 @@ const EventTab = ({navigation, route}) => {
   const refCamera = useRef(null);
   const devices = useCameraDevices('wide-angle-camera');
   const device = devices.back;
-  const [showCamera, setShowCamera] = useState(false);
+  const [showCamera, setShowCamera] = useState(null);
   useEffect(() => {
     const requestCameraPermission = async () => {
       const newCameraPermission = await Camera.requestCameraPermission();
@@ -39,8 +39,10 @@ const EventTab = ({navigation, route}) => {
           device={device}
           isActive={true}
         />
-      ) : (
+      ) : showCamera == false ? (
         <Text>请确认您是否开启相机访问权限</Text>
+      ) : (
+        showCamera == null(<Text>loading...</Text>)
       )}
     </View>
   );
