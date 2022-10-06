@@ -42,7 +42,7 @@ const EventTab = ({navigation, route}) => {
       ) : showCamera == false ? (
         <Text>请确认您是否开启相机访问权限</Text>
       ) : (
-        showCamera == null(<Text>loading...</Text>)
+        <Text>loading...</Text>
       )}
     </View>
   );
