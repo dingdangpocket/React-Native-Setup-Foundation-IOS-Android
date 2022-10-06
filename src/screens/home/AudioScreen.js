@@ -26,10 +26,11 @@ const IncidentDescScreen = () => {
 
   return (
     <View style={{flex: 1}}>
+      <Text style={{fontSize:25}}>音乐🎵...加载中...请稍后...</Text>
       <Video
         source={{
-          uri: 'https://vd2.bdstatic.com/mda-je0eurd25map1qya/sc/mda-je0eurd25map1qya.mp4?v_from_s=hkapp-haokan-hnb&auth_key=1665064883-0-0-b90a145ef1a3a02d90ed9a5af83a66b9&bcevod_channel=searchbox_feed&pd=1&cd=0&pt=3&logid=1883086367&vid=11957859104889775946&abtest=&klogid=1883086367',
-        }} // Can be a URL or a local file.
+          uri: 'https://webfs.ali.kugou.com/202210062139/5fc6d016b4e1ed8c34c48ea2508e4e9a/KGTX/CLTX001/4af037a12e824e3c357d9860c5bf5f09.mp3',
+        }}
         ref={refPlayer} // Store reference
         onError={onError} // Callback when video cannot be loaded
         style={styles.container}
@@ -50,11 +51,11 @@ const IncidentDescScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    height: Dimensions.get('screen').height,
+    height: 100,
     width: Dimensions.get('screen').width,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'black',
+    backgroundColor: 'orange',
   },
 });
 

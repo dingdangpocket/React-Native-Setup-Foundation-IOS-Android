@@ -1,7 +1,8 @@
 import React from 'react';
-import {Image, StyleSheet, SafeAreaView,} from 'react-native';
+import {Image, StyleSheet, SafeAreaView} from 'react-native';
 import IncidentDescScreen from './src/screens/home/IncidentDescScreen';
 import TheoryDescScreen from './src/screens/home/TheoryDescScreen';
+import AudioScreen from './src/screens/home/AudioScreen';
 import HomeTab from './src/screens/tabScreens/HomeTab';
 import DiscoveryTab from './src/screens/tabScreens/DiscoveryTab';
 import MineTab from './src/screens/tabScreens/MineTab';
@@ -11,9 +12,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Provider} from 'react-redux';
 import {Store} from './src/redux/store';
-import { LogBox } from 'react-native';
-LogBox.ignoreLogs(['new NativeEventEmitter']); 
-
+import {LogBox} from 'react-native';
+LogBox.ignoreLogs(['new NativeEventEmitter']);
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -51,6 +51,11 @@ const HomeStackRoutes = [
     name: 'IncidentDescScreen',
     component: IncidentDescScreen,
     option: {title: '视频集成'},
+  },
+  {
+    name: 'AudioScreen',
+    component: AudioScreen,
+    option: {title: '音频集成'},
   },
 ];
 
@@ -128,7 +133,6 @@ const HomeTabs = () => {
 };
 
 const App = () => {
-
   return (
     <Provider store={Store}>
       <SafeAreaView style={styles.container}>

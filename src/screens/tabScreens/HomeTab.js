@@ -132,6 +132,12 @@ const HomeTab = ({navigation}) => {
               onPress={() => getCurrentPosition()}>
               <Text style={{color: 'white'}}>位置</Text>
             </TouchableOpacity>
+            <TouchableOpacity
+              activeOpacity={0.9}
+              style={styles.btn}
+              onPress={() => navigation.navigate('AudioScreen')}>
+              <Text style={{color: 'white'}}>音频集成</Text>
+            </TouchableOpacity>
           </View>
         ) : null}
         {current == 1 ? <Text>精选</Text> : null}
