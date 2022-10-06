@@ -40,7 +40,7 @@ const EventTab = ({navigation, route}) => {
           isActive={true}
         />
       ) : (
-        <Text>无权限</Text>
+        <Text>请确认您是否开启相机访问权限</Text>
       )}
     </View>
   );
