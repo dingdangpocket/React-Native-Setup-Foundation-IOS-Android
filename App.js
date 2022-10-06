@@ -4,6 +4,7 @@ import IncidentDescScreen from './src/screens/home/IncidentDescScreen';
 import TheoryDescScreen from './src/screens/home/TheoryDescScreen';
 import ImagePicker from './src/screens/home/ImagePicker';
 import AudioScreen from './src/screens/home/AudioScreen';
+import StackScreen from './src/screens/home/StackScreen';
 import HomeTab from './src/screens/tabScreens/HomeTab';
 import DiscoveryTab from './src/screens/tabScreens/DiscoveryTab';
 import MineTab from './src/screens/tabScreens/MineTab';
@@ -62,6 +63,11 @@ const HomeStackRoutes = [
     name: 'ImagePicker',
     component: ImagePicker,
     option: {title: '访问相机集成'},
+  },
+  {
+    name: 'StackScreen',
+    component: StackScreen,
+    option: {title: 'StackPages'},
   },
 ];
 

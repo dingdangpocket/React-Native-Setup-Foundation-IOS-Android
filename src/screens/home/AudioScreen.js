@@ -5,7 +5,7 @@ import Video from 'react-native-video';
 const IncidentDescScreen = () => {
   const refPlayer = useRef(null);
   const [rate, setRate] = useState(1.0);
-  const [volume, setVolume] = useState(200.0);
+  const [volume, setVolume] = useState(1.0);
   const [resizeMode, setResizeMode] = useState('contain');
   const [paused, setPaused] = useState(false);
   const onError = onError => {
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get('screen').width,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'orange',
+    backgroundColor: 'black',
   },
 });
 

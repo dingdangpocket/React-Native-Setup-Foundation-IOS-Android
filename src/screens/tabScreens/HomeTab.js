@@ -8,6 +8,7 @@ import {
   Dimensions,
   TouchableOpacity,
   PermissionsAndroid,
+  Alert,
 } from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
 
@@ -58,7 +59,20 @@ const HomeTab = ({navigation}) => {
     if (hasLocationPermission) {
       try {
         Geolocation.getCurrentPosition(
-          info => console.log('已授权', info),
+          info => {
+            console.log('已授权', info);
+            Alert.alert(
+              '当前位置',
+              `经度${info.coords.latitude} - 纬度${info.coords.longitude}`,
+              [
+                {
+                  text: '关闭',
+                  onPress: () => console.log('Cancel Pressed'),
+                  style: 'cancel',
+                },
+              ],
+            );
+          },
           error => {
             console.log('未授权', error);
           },
@@ -213,7 +227,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     borderBottomWidth: 2,
     borderBottomColor: '#972F97',
-    backgroundColor: 'rgba(151,47,151, 0.7)',
+    backgroundColor: 'black',
   },
   optionBox: {
     height: 60,
@@ -224,7 +238,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     borderBottomWidth: 2,
     borderBottomColor: '#972F97',
-    backgroundColor: 'rgba(151,47,151, 0.7)',
+    backgroundColor: 'black',
   },
   optionBoxUnActived: {
     height: 60,

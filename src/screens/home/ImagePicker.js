@@ -6,27 +6,28 @@ import {
   TouchableOpacity,
   View,
   Dimensions,
+  Image
 } from 'react-native';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
-import ImageBackground from 'react-native/Libraries/Image/ImageBackground';
+// import ImageBackground from 'react-native/Libraries/Image/ImageBackground';
 const ImagePicker = () => {
   const [isShow, setIsshow] = useState(true);
-  const [prview, setPrview] = useState('');
+  const [preview, setPreview] = useState('');
   const options = {
     mediaType: 'photo',
-    maxWidth: 300,
-    maxHeight: 300,
-    quality: 0.8,
+    maxWidth: 800,
+    maxHeight:1200,
+    quality: 100,
     cameraType: 'back',
     includeBase64: true,
-    saveToPhotos: false,
+    saveToPhotos: true,
     selectionLimit: 5,
   };
   const onCancel = () => {
     setIsshow(false);
   };
   const onSelect = assets => {
-    setPrview(assets);
+    setPreview(assets);
     console.log('assets', assets);
   };
   const dealImage = response => {
@@ -62,17 +63,17 @@ const ImagePicker = () => {
     },
     {
       label: '取消',
-      textStyle: {color: 'black'},
+      textStyle: {color: 'white'},
       onClick: () => onCancel(),
     },
   ];
 
   return (
     <View>
-      <ImageBackground
-        source={prview}
+      <Image
+        source={preview}
         style={{height: 500, width: Dimensions.get('screen').width}}
-        resizeMode="cover"></ImageBackground>
+        resizeMode="contain"></Image>
       <Modal
         animationType={'slide'}
         transparent={true}
@@ -110,7 +111,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'orange',
+    backgroundColor: 'black',
   },
   openButton: {
     width: '100%',
