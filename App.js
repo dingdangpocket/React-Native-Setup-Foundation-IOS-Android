@@ -14,6 +14,7 @@ import {Store} from './src/redux/store';
 import { LogBox } from 'react-native';
 LogBox.ignoreLogs(['new NativeEventEmitter']); 
 
+
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 //核心库;
