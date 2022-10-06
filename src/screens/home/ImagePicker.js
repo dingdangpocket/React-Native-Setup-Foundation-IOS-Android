@@ -62,7 +62,7 @@ const ImagePicker = () => {
     },
     {
       label: '取消',
-      textStyle: {color: '#999'},
+      textStyle: {color: 'black'},
       onClick: () => onCancel(),
     },
   ];
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'gray',
+    backgroundColor: 'orange',
   },
   openButton: {
     width: '100%',
@@ -118,11 +118,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomWidth: 10,
-    borderBottomColor: 'gray',
+    borderBottomColor: 'white',
   },
   buttonTitle: {
     fontSize: 15,
-    // color: '#2196F3',
+    color: 'white',
     textAlign: 'center',
   },
 });
