@@ -3,11 +3,27 @@
 buildscript {
     ext {
         buildToolsVersion = '30.0.2'
-        minSdkVersion = 21
-        compileSdkVersion = 30
-        targetSdkVersion = 30
+        minSdkVersion = Integer.parseInt(findProperty('android.minSdkVersion') ?: '23')
+        compileSdkVersion = Integer.parseInt(findProperty('android.compileSdkVersion') ?: '31')
+        targetSdkVersion = Integer.parseInt(findProperty('android.targetSdkVersion') ?: '31')
+        if (findProperty('android.kotlinVersion')) {
+            kotlinVersion = findProperty('android.kotlinVersion')
+        }
         ndkVersion = '21.4.7075529'
-        kotlin_version = '1.6.10'
+        // minSdkVersion = 21
+        // compileSdkVersion = 30
+        // targetSdkVersion = 30
+        // kotlin_version = '1.6.10'
+
+        // buildToolsVersion = '30.0.2'
+        // minSdkVersion = Integer.parseInt(findProperty('android.minSdkVersion') ?: '23')
+        // compileSdkVersion = Integer.parseInt(findProperty('android.compileSdkVersion') ?: '31')
+        // targetSdkVersion = Integer.parseInt(findProperty('android.targetSdkVersion') ?: '31')
+        // if (findProperty('android.kotlinVersion')) {
+        //     kotlinVersion = findProperty('android.kotlinVersion')
+        // }
+        // frescoVersion = findProperty('expo.frescoVersion') ?: '2.5.0'
+        // ndkVersion = '21.4.7075529'
     }
     repositories {
         google()
@@ -15,7 +31,7 @@ buildscript {
     }
     dependencies {
         classpath('com.android.tools.build:gradle:4.2.2')
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
+        // classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
 
     // NOTE: Do not place your application dependencies here; they belong
     // in the individual module build.gradle files
@@ -38,9 +54,9 @@ allprojects {
         google()
         maven { url 'https://www.jitpack.io' }
     }
-    // gradle.projectsEvaluated {
-    //     tasks.withType(JavaCompile) {
-    //         options.compilerArgs << '-Xlint:unchecked' << '-Xlint:deprecation'
-    //     }
-    // }
+// gradle.projectsEvaluated {
+//     tasks.withType(JavaCompile) {
+//         options.compilerArgs << '-Xlint:unchecked' << '-Xlint:deprecation'
+//     }
+// }
 }
