@@ -2,6 +2,7 @@ import React from 'react';
 import {Image, StyleSheet, SafeAreaView} from 'react-native';
 import IncidentDescScreen from './src/screens/home/IncidentDescScreen';
 import TheoryDescScreen from './src/screens/home/TheoryDescScreen';
+import ImagePicker from './src/screens/home/ImagePicker';
 import AudioScreen from './src/screens/home/AudioScreen';
 import HomeTab from './src/screens/tabScreens/HomeTab';
 import DiscoveryTab from './src/screens/tabScreens/DiscoveryTab';
@@ -56,6 +57,11 @@ const HomeStackRoutes = [
     name: 'AudioScreen',
     component: AudioScreen,
     option: {title: '音频集成'},
+  },
+  {
+    name: 'ImagePicker',
+    component: ImagePicker,
+    option: {title: '访问相机集成'},
   },
 ];
 

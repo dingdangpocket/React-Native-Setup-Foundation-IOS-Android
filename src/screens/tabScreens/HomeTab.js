@@ -72,6 +72,7 @@ const HomeTab = ({navigation}) => {
       //IOS如果点了不允许授权,getCurrentPosition自动会进入Error;
     }
   };
+
   return (
     <View>
       <ScrollView horizontal={false}>
@@ -118,25 +119,31 @@ const HomeTab = ({navigation}) => {
               activeOpacity={0.9}
               style={styles.btn}
               onPress={() => navigation.navigate('TheoryDescScreen')}>
-              <Text style={{color: 'white'}}>网页</Text>
+              <Text style={{color: 'white'}}>网页集成</Text>
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.9}
               style={styles.btn}
               onPress={() => navigation.navigate('IncidentDescScreen')}>
-              <Text style={{color: 'white'}}>视频</Text>
+              <Text style={{color: 'white'}}>视频集成</Text>
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.9}
               style={styles.btn}
               onPress={() => getCurrentPosition()}>
-              <Text style={{color: 'white'}}>位置</Text>
+              <Text style={{color: 'white'}}>位置集成</Text>
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.9}
               style={styles.btn}
               onPress={() => navigation.navigate('AudioScreen')}>
               <Text style={{color: 'white'}}>音频集成</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              activeOpacity={0.9}
+              style={styles.btn}
+              onPress={() => navigation.navigate('ImagePicker')}>
+              <Text style={{color: 'white'}}>访问相册</Text>
             </TouchableOpacity>
           </View>
         ) : null}
