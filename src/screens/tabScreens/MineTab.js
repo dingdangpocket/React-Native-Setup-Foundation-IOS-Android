@@ -1,12 +1,4 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
-import React, {Fragment, Component} from 'react';
+import React, { Fragment, Component, useEffect, useState } from 'react';
 import {
   TouchableOpacity,
   SafeAreaView,
@@ -17,109 +9,226 @@ import {
   View,
   Text,
   Alert,
+  Linking
 } from 'react-native';
-
-import {Header, Colors} from 'react-native/Libraries/NewAppScreen';
-
+import { Header, Colors } from 'react-native/Libraries/NewAppScreen';
 import * as WeChat from 'react-native-wechat-lib';
 
-export default class App extends Component {
-  shareOptions = {
+const MineTab = () => {
+  const [appid, setAppId] = useState("wx9013ae9aee782bfc");
+  const [secretID, setSecretID] = useState("7a9ebc6f2902f964xxxxxxxxx");
+  const [apiVersion, setApiVersion] = useState(null);
+  const [isWXAppInstalled, setIsWXAppInstalled] = useState(true);
+  const [wxAppInstallUrl, setWxAppInstallUrl] = useState(null);
+  const [isWXAppSupportApi, setIsWXAppSupportApi] = useState(false);
+  useEffect(() => {
+    // "appId": "wx9013ae9aee782bfc",
+    // "linking": "https://dev.workbench.zhichetech.com/wechat/"
+    WeChat.registerApp("wx9013ae9aee782bfc", "https://dev.workbench.zhichetech.com/wechat/"); // Replace with your AppID
+    const initData = async () => {
+      const apiVersion = await WeChat.getApiVersion()
+      const wxAppInstallUrl = Platform.OS === 'ios' ? await WeChat.getWXAppInstallUrl() : null;
+      const isWXAppSupportApi = await WeChat.isWXAppSupportApi()
+      console.log(isWXAppSupportApi);
+      const isWXAppInstalled = await WeChat.isWXAppInstalled()
+      setApiVersion(apiVersion);
+      setWxAppInstallUrl(wxAppInstallUrl)
+      setIsWXAppSupportApi(isWXAppSupportApi)
+      setIsWXAppInstalled(isWXAppInstalled)
+    }
+    initData()
+  }, [])
+  const shareOptions = {
     title: 'playground',
     description: '微信分享测试',
     thumbImage: 'https://i.loli.net/2019/09/03/62FauzAY37gsEXV.png',
     type: 'news',
     webpageUrl: 'https://github.com/little-snow-fox/react-native-wechat-lib',
   };
-  constructor(props) {
-    super(props);
-    this.state = {
-      apiVersion: null,
-      isWXAppInstalled: false,
-      wxAppInstallUrl: null,
-      isWXAppSupportApi: false,
-    };
-  }
-  handleOpenApp() {
-    if (this.state.isWXAppInstalled) {
+  const onOpenWechat = () => {
+    if (isWXAppInstalled) {
+      WeChat.openWXApp();
       return WeChat.openWXApp();
     } else {
       Alert.alert('没有安装微信，请安装之后重试');
     }
   }
-  handleShareToSession() {
-    if (this.state.isWXAppInstalled) {
-      WeChat.shareToSession(this.shareOptions).catch(error => {
+  const onWechatShareToFriend = () => {
+    if (isWXAppInstalled) {
+      WeChat.shareToSession(shareOptions).catch(error => {
         Alert.alert(error.message);
       });
     } else {
       Alert.alert('没有安装微信，请安装之后重试');
     }
   }
-  handleShareToMoment() {
-    if (this.state.isWXAppInstalled) {
-      WeChat.shareToTimeline(this.shareOptions).catch(error => {
+  const onWechatShareToMoment = () => {
+    if (isWXAppInstalled) {
+      WeChat.shareToTimeline(shareOptions).catch(error => {
         Alert.alert(error.message);
       });
     } else {
       Alert.alert('没有安装微信，请安装之后重试');
     }
   }
-  async componentDidMount() {
-    try {
-      WeChat.registerApp("wx9013ae9aee782bfc"); // Replace with your AppID
-      // "appId": "wx9013ae9aee782bfc",
-      // "linking": "https://dev.workbench.zhichetech.com/wechat/"
-      this.setState({
-        apiVersion: await WeChat.getApiVersion(),
-        wxAppInstallUrl:
-          Platform.OS === 'ios' ? await WeChat.getWXAppInstallUrl() : null,
-        isWXAppSupportApi: await WeChat.isWXAppSupportApi(),
-        isWXAppInstalled: await WeChat.isWXAppInstalled(),
+  const installWechat = () => {
+    var getWeChatUrl = 'itms-apps://itunes.apple.com/cn/app/%E5%BE%AE%E4%BF%A1/id414478124?mt=8';
+    Linking.canOpenURL(getWeChatUrl)
+      .then((supported) => {
+        if (!supported) {
+          console.log('Can\'t handle url: ' + url);
+          Alert.alert(
+            '提示',
+            'Can\'t handle url: ' + url,
+            [
+              { text: 'OK', onPress: () => { } }
+            ]
+          );
+        } else {
+          return Linking.openURL(getWeChatUrl);
+        }
+      })
+      .catch((err) => {
+        console.log('An error occurred', err);
+        Alert.alert(
+          '提示',
+          'An error occurred: ' + err,
+          [
+            { text: 'OK', onPress: () => { } }
+          ]
+        );
       });
-    } catch (e) {
-      console.error(e);
-    }
   }
-  render() {
-    const {apiVersion} = this.state;
-    return (
-      <Fragment>
-        <StatusBar barStyle="dark-content" />
-        <SafeAreaView>
-          <ScrollView
-            contentInsetAdjustmentBehavior="automatic"
-            style={styles.scrollView}>
-            <Header />
-            <View style={styles.body}>
-              <View style={styles.sectionContainer}>
-                <Text style={styles.highlight}>
-                  ApiVersion: <Text>{apiVersion}</Text>
-                </Text>
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => this.handleOpenApp()}>
-                  <Text>打开微信</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => this.handleShareToSession()}>
-                  <Text>分享至微信好友</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => this.handleShareToMoment()}>
-                  <Text>分享至朋友圈</Text>
-                </TouchableOpacity>
-              </View>
+  //Step1:AccessToken 
+  const getAccessToken = (responseCode) => {
+    // ToastUtil.showShort(responseCode, true);
+    var AccessTokenUrl = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=' + appid + '&secret=' + secretID + '&code=' + responseCode + '&grant_type=authorization_code';
+    // console.log('AccessTokenUrl=',AccessTokenUrl);
+    fetch(AccessTokenUrl, {
+      method: 'GET',
+      timeout: 2000,
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+      },
+    })
+      .then((response) => response.json())
+      .then((responseData) => {
+        console.log('AccessToken值', responseData);
+        getRefreshToken(responseData.refresh_token);
+      })
+      .catch((error) => {
+        if (error) console.log('error', error);
+      })
+  }
+  //Step2:RefreshToken 
+  const getRefreshToken = (refreshtoken) => {
+    var getRefreshTokenUrl = 'https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=' + appid + '&grant_type=refresh_token&refresh_token=' + refreshtoken;
+    // console.log('getRefreshTokenUrl=',getRefreshTokenUrl);
+    fetch(getRefreshTokenUrl, {
+      method: 'GET',
+      timeout: 2000,
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+      },
+    })
+      .then((response) => response.json())
+      .then((responseData) => {
+        console.log('RefreshToken', responseData);
+        getUserInfo(responseData);
+      })
+      .catch((error) => {
+        if (error) console.log('error', error);
+      })
+  }
+  //Step3:UserInfo 
+  const getUserInfo = (responseData) => {
+    console.log(responseData);
+    var getUserInfoUrl = 'https://api.weixin.qq.com/sns/userinfo?access_token=' + responseData.access_token + '&openid=' + responseData.openid;
+    console.log('getUserInfoUrl=', getUserInfoUrl);
+    fetch(getUserInfoUrl, {
+      method: 'GET',
+      timeout: 2000,
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+      },
+    })
+      .then((response) => response.json())
+      .then((responseData) => {
+        console.log('UserInfo', responseData);
+      })
+      .catch((error) => {
+        if (error) console.log('error', error);
+      })
+  }
+  const onWechatLogin = () => {
+    let scope = 'snsapi_userinfo';
+    let state = 'wechat_sdk_demo';
+    WeChat.isWXAppInstalled()
+      .then((isInstalled) => {
+        if (isInstalled) {
+          WeChat.sendAuthRequest(scope, state)
+            .then(responseCode => {
+              console.log("code值", responseCode.code);
+              getAccessToken(responseCode.code);
+            })
+            .catch(err => {
+              Alert.alert('登录授权发生错误：', err.message, [
+                { text: '确定' }
+              ]);
+            })
+        }
+        else {
+          Platform.OS == 'ios' ?
+            Alert.alert('没有安装微信', '是否安装微信？', [
+              { text: '取消' },
+              { text: '确定', onPress: () => installWechat() }
+            ]) :
+            Alert.alert('没有安装微信', '请先安装微信客户端在进行登录', [
+              { text: '确定' }
+            ])
+        }
+      })
+  }
+  return (
+    <Fragment>
+      <StatusBar barStyle="dark-content" />
+      <SafeAreaView>
+        <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          style={styles.scrollView}>
+          <Header />
+          <View style={styles.body}>
+            <View style={styles.sectionContainer}>
+              <Text style={styles.highlight}>
+                ApiVersion: <Text>{apiVersion}</Text>
+              </Text>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={onOpenWechat}>
+                <Text>打开微信</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={onWechatShareToFriend}>
+                <Text>分享至微信好友</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={onWechatShareToMoment}>
+                <Text>分享至朋友圈</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={onWechatLogin}>
+                <Text>微信登陆</Text>
+              </TouchableOpacity>
             </View>
-          </ScrollView>
-        </SafeAreaView>
-      </Fragment>
-    );
-  }
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    </Fragment>
+  );
 }
-
 const styles = StyleSheet.create({
   scrollView: {
     backgroundColor: Colors.lighter,
@@ -148,3 +257,4 @@ const styles = StyleSheet.create({
     borderColor: Colors.black,
   },
 });
+export default MineTab;
