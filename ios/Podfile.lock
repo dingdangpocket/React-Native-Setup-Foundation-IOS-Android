@@ -91,6 +91,8 @@ PODS:
     - RCT-Folly (= 2021.06.28.00-v2)
     - RCTRequired (= 0.66.4)
     - React-Core (= 0.66.4)
+  - RCTWeChat (1.1.26):
+    - React-Core
   - React (0.66.4):
     - React-Core (= 0.66.4)
     - React-Core/DevSupport (= 0.66.4)
@@ -274,7 +276,7 @@ PODS:
     - glog
   - react-native-geolocation (3.0.1):
     - React-Core
-  - react-native-image-picker (4.10.0):
+  - react-native-image-picker (4.8.4):
     - React-Core
   - react-native-safe-area-context (3.4.1):
     - React-Core
@@ -422,6 +424,7 @@ DEPENDENCIES:
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
+  - RCTWeChat (from `../node_modules/react-native-wechat-lib`)
   - React (from `../node_modules/react-native/`)
   - React-callinvoker (from `../node_modules/react-native/ReactCommon/callinvoker`)
   - React-Core (from `../node_modules/react-native/`)
@@ -491,6 +494,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/Libraries/RCTRequired"
   RCTTypeSafety:
     :path: "../node_modules/react-native/Libraries/TypeSafety"
+  RCTWeChat:
+    :path: "../node_modules/react-native-wechat-lib"
   React:
     :path: "../node_modules/react-native/"
   React-callinvoker:
@@ -578,6 +583,7 @@ SPEC CHECKSUMS:
   RCT-Folly: a21c126816d8025b547704b777a2ba552f3d9fa9
   RCTRequired: 4bf86c70714490bca4bf2696148638284622644b
   RCTTypeSafety: c475a7059eb77935fa53d2c17db299893f057d5d
+  RCTWeChat: 289c92186c1f55716a6378af55388292d94b2d9e
   React: f64af14e3f2c50f6f2c91a5fd250e4ff1b3c3459
   React-callinvoker: b74e4ae80287780dcdf0cab262bcb581eeef56e7
   React-Core: 3eb7432bad96ff1d25aebc1defbae013fee2fd0e
@@ -588,7 +594,7 @@ SPEC CHECKSUMS:
   React-jsinspector: d0374f7509d407d2264168b6d0fad0b54e300b85
   React-logger: 933f80c97c633ee8965d609876848148e3fef438
   react-native-geolocation: 2b504434b8186bf93ba2fdbd9b3392814f248824
-  react-native-image-picker: 35834940bc572ba914707c39b60e043a06f88178
+  react-native-image-picker: 9f9eb160a4f4fc0702f9d0a60fa453b413258ef8
   react-native-safe-area-context: 5b8a418400eb3d8364aa87300e865c0262cc17b9
   react-native-video: 79a186e378d327b6c08bc3982c17ef455c6bd75c
   react-native-webview: 0270e43282fe9d65328e9ae77900082c041f95a2
@@ -612,6 +618,6 @@ SPEC CHECKSUMS:
   Yoga: e7dc4e71caba6472ff48ad7d234389b91dadc280
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: a984cd767c82dc552d671223332a89f0e9f7adfd
+PODFILE CHECKSUM: 41be31465ed58d303df1c2cb8383bdd2dccfca7c
 
 COCOAPODS: 1.11.2

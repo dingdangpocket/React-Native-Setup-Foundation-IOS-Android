@@ -18,6 +18,8 @@ target 'AwesomeTSProject' do
 
   pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-async-storage/async-storage'
 
+  pod 'RCTWeChat', :path => '../node_modules/react-native-wechat-lib'
+
   target 'AwesomeTSProjectTests' do
     inherit! :complete
     # Pods for testing
