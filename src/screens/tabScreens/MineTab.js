@@ -15,22 +15,21 @@ import { Header, Colors } from 'react-native/Libraries/NewAppScreen';
 import * as WeChat from 'react-native-wechat-lib';
 
 const MineTab = () => {
-  const [appid, setAppId] = useState("wx9013ae9aee782bfc");
-  const [secretID, setSecretID] = useState("7a9ebc6f2902f964xxxxxxxxx");
+  const [appid] = useState("wx9013ae9aee782bfc");
+  const [secretID] = useState("7a9ebc6f2902f9648989382ewe");
   const [apiVersion, setApiVersion] = useState(null);
   const [isWXAppInstalled, setIsWXAppInstalled] = useState(true);
   const [wxAppInstallUrl, setWxAppInstallUrl] = useState(null);
   const [isWXAppSupportApi, setIsWXAppSupportApi] = useState(false);
   useEffect(() => {
-    // WeChat.registerApp('appid', 'universalLink');
+    //WeChat.registerApp('appid', 'universalLink');
     //appid和secretID/在微信开发平台申请(https://open.weixin.qq.com/)universalLink就是填写的申请资料;
-    WeChat.registerApp("wx9013ae9aee782bfc", "https://dev.workbench.zhichetech.com/wechat/").then((res) => {
+    WeChat.registerApp("wx9013ae9aee782bfc", "https://www.baidu.com/").then((res) => {
       console.log('weixin open sdk successfully integrated', res);
-    })
-      .catch(err => {
-        console.log('weixin open sdk integration failed: ', err);
-      });
-    const initData = async () => {
+    }).catch(err => {
+      console.log('weixin open sdk integration failed: ', err);
+    });
+    const initWxApiStatus = async () => {
       const apiVersion = await WeChat.getApiVersion()
       const wxAppInstallUrl = Platform.OS === 'ios' ? await WeChat.getWXAppInstallUrl() : null;
       const isWXAppSupportApi = await WeChat.isWXAppSupportApi()
@@ -41,7 +40,7 @@ const MineTab = () => {
       setIsWXAppSupportApi(isWXAppSupportApi)
       setIsWXAppInstalled(isWXAppInstalled)
     }
-    initData()
+    initWxApiStatus()
   }, [])
   const shareOptions = {
     title: 'playground',
@@ -51,34 +50,21 @@ const MineTab = () => {
     webpageUrl: 'https://github.com/little-snow-fox/react-native-wechat-lib',
   };
   const onOpenWechat = () => {
-    if (isWXAppInstalled) {
-      WeChat.openWXApp();
-      return WeChat.openWXApp();
-    } else {
-      Alert.alert('没有安装微信，请安装之后重试');
-    }
+    isWXAppInstalled ? WeChat.openWXApp() : Alert.alert('没有安装微信，请安装之后重试');
   }
   const onWechatShareToFriend = () => {
-    if (isWXAppInstalled) {
-      WeChat.shareToSession(shareOptions).catch(error => {
-        Alert.alert(error.message);
-      });
-    } else {
-      Alert.alert('没有安装微信，请安装之后重试');
-    }
+    isWXAppInstalled ? WeChat.shareToSession(shareOptions).catch(error => {
+      Alert.alert(error.message);
+    }) : Alert.alert('没有安装微信，请安装之后重试');
   }
   const onWechatShareToMoment = () => {
-    if (isWXAppInstalled) {
-      WeChat.shareToTimeline(shareOptions).catch(error => {
-        Alert.alert(error.message);
-      });
-    } else {
-      Alert.alert('没有安装微信，请安装之后重试');
-    }
+    isWXAppInstalled ? WeChat.shareToTimeline(shareOptions).catch(error => {
+      Alert.alert(error.message);
+    }) : Alert.alert('没有安装微信，请安装之后重试');
   }
   const installWechat = () => {
-    var getWeChatUrl = 'itms-apps://itunes.apple.com/cn/app/%E5%BE%AE%E4%BF%A1/id414478124?mt=8';
-    Linking.canOpenURL(getWeChatUrl)
+    let WeChatUrl = 'itms-apps://itunes.apple.com/cn/app/%E5%BE%AE%E4%BF%A1/id414478124?mt=8';
+    Linking.canOpenURL(WeChatUrl)
       .then((supported) => {
         if (!supported) {
           console.log('Can\'t handle url: ' + url);
@@ -90,7 +76,7 @@ const MineTab = () => {
             ]
           );
         } else {
-          return Linking.openURL(getWeChatUrl);
+          return Linking.openURL(WeChatUrl);
         }
       })
       .catch((err) => {
@@ -106,9 +92,7 @@ const MineTab = () => {
   }
   //Step1:AccessToken 
   const getAccessToken = (responseCode) => {
-    // ToastUtil.showShort(responseCode, true);
-    var AccessTokenUrl = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=' + appid + '&secret=' + secretID + '&code=' + responseCode + '&grant_type=authorization_code';
-    // console.log('AccessTokenUrl=',AccessTokenUrl);
+    let AccessTokenUrl = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=' + appid + '&secret=' + secretID + '&code=' + responseCode + '&grant_type=authorization_code';
     fetch(AccessTokenUrl, {
       method: 'GET',
       timeout: 2000,
@@ -127,8 +111,7 @@ const MineTab = () => {
   }
   //Step2:RefreshToken 
   const getRefreshToken = (refreshtoken) => {
-    var getRefreshTokenUrl = 'https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=' + appid + '&grant_type=refresh_token&refresh_token=' + refreshtoken;
-    // console.log('getRefreshTokenUrl=',getRefreshTokenUrl);
+    let getRefreshTokenUrl = 'https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=' + appid + '&grant_type=refresh_token&refresh_token=' + refreshtoken;
     fetch(getRefreshTokenUrl, {
       method: 'GET',
       timeout: 2000,
