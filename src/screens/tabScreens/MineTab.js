@@ -22,15 +22,20 @@ const MineTab = () => {
   const [wxAppInstallUrl, setWxAppInstallUrl] = useState(null);
   const [isWXAppSupportApi, setIsWXAppSupportApi] = useState(false);
   useEffect(() => {
-    // "appId": "wx9013ae9aee782bfc",
-    // "linking": "https://dev.workbench.zhichetech.com/wechat/"
-    WeChat.registerApp("wx9013ae9aee782bfc", "https://dev.workbench.zhichetech.com/wechat/"); // Replace with your AppID
+    // WeChat.registerApp('appid', 'universalLink');
+    //appid和secretID/在微信开发平台申请(https://open.weixin.qq.com/)universalLink就是填写的申请资料;
+    WeChat.registerApp("wx9013ae9aee782bfc", "https://dev.workbench.zhichetech.com/wechat/").then((res) => {
+      console.log('weixin open sdk successfully integrated', res);
+    })
+      .catch(err => {
+        console.log('weixin open sdk integration failed: ', err);
+      });
     const initData = async () => {
       const apiVersion = await WeChat.getApiVersion()
       const wxAppInstallUrl = Platform.OS === 'ios' ? await WeChat.getWXAppInstallUrl() : null;
       const isWXAppSupportApi = await WeChat.isWXAppSupportApi()
-      console.log(isWXAppSupportApi);
       const isWXAppInstalled = await WeChat.isWXAppInstalled()
+      console.log("apiVersion", apiVersion, "wxAppInstallUrl", wxAppInstallUrl, "isWXAppSupportApi", isWXAppSupportApi, "isWXAppInstalled", isWXAppInstalled);
       setApiVersion(apiVersion);
       setWxAppInstallUrl(wxAppInstallUrl)
       setIsWXAppSupportApi(isWXAppSupportApi)
