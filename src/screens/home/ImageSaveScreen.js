@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import {
     SafeAreaView,
     StyleSheet,
@@ -27,10 +27,10 @@ const ImageSaveScreen = () => {
             const granted = await PermissionsAndroid.request(
                 PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
                 {
-                    title: 'Image Download Permission',
-                    message: 'Your permission is required to save images to your device',
-                    buttonNegative: 'Cancel',
-                    buttonPositive: 'OK',
+                    title: '请求访问相册',
+                    message: '我们将访问你的的相册',
+                    buttonNegative: '取消',
+                    buttonPositive: '确认',
                 },
             );
             if (granted === PermissionsAndroid.RESULTS.GRANTED) {
@@ -39,7 +39,7 @@ const ImageSaveScreen = () => {
             Alert.alert(
                 'Save remote Image',
                 'Grant Me Permission to save Image',
-                [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
+                [{ text: '好的', onPress: () => console.log('OK Pressed') }],
                 { cancelable: false },
             );
         } catch (err) {
@@ -52,7 +52,7 @@ const ImageSaveScreen = () => {
         }
     };
 
-    const handleDownload = async () => {
+    const onDownload = async () => {
         // if device is android you have to ensure you have permission
         if (Platform.OS === 'android') {
             const granted = await getPermissionAndroid();
@@ -70,16 +70,16 @@ const ImageSaveScreen = () => {
                 CameraRoll.saveToCameraRoll(res.data, 'photo')
                     .then(() => {
                         Alert.alert(
-                            'Save remote Image',
-                            'Image Saved Successfully',
-                            [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
+                            '提示',
+                            '保存成功',
+                            [{ text: '好的', onPress: () => console.log('OK Pressed') }],
                             { cancelable: false },
                         );
                     })
                     .catch(err => {
                         Alert.alert(
-                            'Save remote Image',
-                            'Failed to save Image: ' + err.message,
+                            '提示',
+                            '保存失败 ' + err.message,
                             [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
                             { cancelable: false },
                         );
@@ -89,8 +89,8 @@ const ImageSaveScreen = () => {
             .catch(error => {
                 setSaving(false)
                 Alert.alert(
-                    'Save remote Image',
-                    'Failed to save Image: ' + error.message,
+                    '提示',
+                    '保存失败 ' + err.message,
                     [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
                     { cancelable: false },
                 );
@@ -98,7 +98,6 @@ const ImageSaveScreen = () => {
     };
     return (
         <>
-            <StatusBar barStyle="dark-content" />
             <SafeAreaView style={styles.container}>
                 <View style={styles.app}>
                     {saving ? (
@@ -107,22 +106,11 @@ const ImageSaveScreen = () => {
                         </View>
                     ) : (
                         <>
-                            <Text style={styles.headerText}>
-                                React Native Image Downloader
-                            </Text>
-                            <View style={styles.textInputWrapper}>
-                                <TextInput
-                                    placeholder="Enter image url here"
-                                    style={styles.textInput}
-                                    value={url}
-                                    onChangeText={text => updateUrl(text)}
-                                />
-                            </View>
                             <Image source={{ uri: url }} style={styles.imagePreview} />
                             <TouchableOpacity
                                 style={styles.downloadButton}
-                                onPress={handleDownload}>
-                                <Text>Download Image</Text>
+                                onPress={onDownload}>
+                                <Text>保存图片</Text>
                             </TouchableOpacity>
                         </>
                     )}
