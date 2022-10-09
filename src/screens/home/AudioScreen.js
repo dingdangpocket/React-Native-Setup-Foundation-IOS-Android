@@ -29,7 +29,7 @@ const IncidentDescScreen = () => {
       <Text style={{ fontSize: 25 }}>音乐🎵...加载中...请稍后...</Text>
       <Video
         source={{
-          uri: 'https://webfs.ali.kugou.com/202210062139/5fc6d016b4e1ed8c34c48ea2508e4e9a/KGTX/CLTX001/4af037a12e824e3c357d9860c5bf5f09.mp3',
+          uri: 'https://webfs.ali.kugou.com/202210091844/24e03a82b5812443b407b551ef98317f/KGTX/CLTX001/f08bcaf339aa338ba55434dc2ac53948.mp3',
         }}
         ref={refPlayer} //实例;
         style={styles.container}//样式;
@@ -51,11 +51,11 @@ const IncidentDescScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    height: 100,
+    height: 50,
     width: Dimensions.get('screen').width,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'black',
+    backgroundColor: 'orange',
   },
 });
 

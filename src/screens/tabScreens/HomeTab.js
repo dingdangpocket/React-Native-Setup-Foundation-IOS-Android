@@ -94,6 +94,26 @@ const HomeTab = ({ navigation }) => {
       //IOS如果不允许授权,getCurrentPosition自动会进入Error;
     }
   };
+
+
+  const onReleaseRoute = () => {
+    dispatch({
+      type: "userRouterPermissions",
+      payload: [],
+    })
+    Alert.alert('提示',"路由释放成功,在Wechat页面中测试;",[
+      { text: '确定' }
+    ]);
+  }
+  const onLockRoute = () => {
+    dispatch({
+      type: "userRouterPermissions",
+      payload: ["InfoScreen"],
+    })
+    Alert.alert('提示',"路由锁定成功,在Wechat页面中测试;",[
+      { text: '确定' }
+    ]);
+  }
   return (
     <View>
       <ScrollView horizontal={false}>
@@ -166,6 +186,18 @@ const HomeTab = ({ navigation }) => {
               onPress={() => navigation.navigate('ImageSaveScreen')}>
               <Text style={{ color: 'white' }}>保存图片</Text>
             </TouchableOpacity>
+            <TouchableOpacity
+              activeOpacity={0.9}
+              style={styles.btn}
+              onPress={onReleaseRoute}>
+              <Text style={{ color: 'white' }}>获取路由权限</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              activeOpacity={0.9}
+              style={styles.btn}
+              onPress={onLockRoute}>
+              <Text style={{ color: 'white' }}>锁定路由权限</Text>
+            </TouchableOpacity>
           </View>
         ) : null}
         {current == 1 ? <Text>精选</Text> : null}
@@ -219,7 +251,7 @@ const styles = StyleSheet.create({
   },
   btn: {
     height: 60,
-    width: 85,
+    width: 95,
     margin: 10,
     justifyContent: 'center',
     alignItems: 'center',

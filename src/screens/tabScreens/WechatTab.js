@@ -214,7 +214,7 @@ const WechatTab = ({ navigation }) => {
             <TouchableOpacity
               style={styles.button}
               onPress={() => wrapNavigationAuthRoute('InfoScreen', state?.routerPermissions, navigation)}>
-              <Text>Stack页面</Text>
+              <Text>权限页面Stack页面</Text>
             </TouchableOpacity>
           </View>
         </View>
