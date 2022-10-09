@@ -15,7 +15,7 @@ import Geolocation from '@react-native-community/geolocation';
 const HomeTab = ({ navigation }) => {
   const [current, setCurrent] = useState(0);
   const [optionList] = useState([
-    { id: 0, content: '关注' },
+    { id: 0, content: '集成' },
     { id: 1, content: '精选' },
     { id: 2, content: '热门' },
     { id: 3, content: '示例' },
@@ -120,12 +120,6 @@ const HomeTab = ({ navigation }) => {
               );
             })}
           </ScrollView>
-          <View style={styles.optionAreaRight}>
-            <Image
-              source={require('../../static/search.png')}
-              style={{ width: 25, height: 25 }}
-            />
-          </View>
         </View>
         {current == 0 ? (
           <View style={styles.focusListContainer}>
@@ -215,14 +209,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     height: 60,
     width: MainWidth * 0.75,
-  },
-  optionAreaRight: {
-    backgroundColor: 'white',
-    height: 60,
-    width: 60,
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   btn: {
     height: 60,
