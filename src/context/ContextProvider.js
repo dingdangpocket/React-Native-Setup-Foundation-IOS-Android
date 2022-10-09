@@ -33,7 +33,6 @@ export const ContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, {
         colorValue: "",
         routerPermissions: "",
-        routerConfig: "",
     });
     return (
         <ContentContext.Provider value={{ state, dispatch }}>

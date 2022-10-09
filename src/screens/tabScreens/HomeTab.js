@@ -12,7 +12,6 @@ import {
 } from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
 import { ContentContext } from "../../context/ContextProvider";
-
 const HomeTab = ({ navigation }) => {
   const { state, dispatch } = useContext(ContentContext);
   useEffect(() => {
