@@ -3,7 +3,6 @@ const initData={
     name:"默认名字",
     data:[]
 }
-
 function userReducer(state=initData,action){
     switch(action.type){
         case SET_USER_NAME:
@@ -13,6 +12,5 @@ function userReducer(state=initData,action){
         default:
             return state
     }
-   
 }
 export default userReducer;

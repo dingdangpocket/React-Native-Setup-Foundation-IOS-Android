@@ -6,7 +6,5 @@ const InfoScreen = () => {
         </View>
     );
 };
-
 const styles = StyleSheet.create({});
-
 export default InfoScreen;

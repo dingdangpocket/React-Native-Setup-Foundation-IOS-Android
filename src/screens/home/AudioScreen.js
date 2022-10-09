@@ -1,5 +1,5 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {View, Text, StyleSheet, ScrollView, Dimensions} from 'react-native';
+import React, { useRef, useState } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import Video from 'react-native-video';
 
 const IncidentDescScreen = () => {
@@ -25,25 +25,25 @@ const IncidentDescScreen = () => {
   };
 
   return (
-    <View style={{flex: 1}}>
-      <Text style={{fontSize:25}}>音乐🎵...加载中...请稍后...</Text>
+    <View style={{ flex: 1 }}>
+      <Text style={{ fontSize: 25 }}>音乐🎵...加载中...请稍后...</Text>
       <Video
         source={{
           uri: 'https://webfs.ali.kugou.com/202210062139/5fc6d016b4e1ed8c34c48ea2508e4e9a/KGTX/CLTX001/4af037a12e824e3c357d9860c5bf5f09.mp3',
         }}
-        ref={refPlayer} // Store reference
-        onError={onError} // Callback when video cannot be loaded
-        style={styles.container}
-        rate={rate} // 控制暂停/播放，0 代表暂停paused, 1代表播放normal.
-        paused={paused}
-        volume={volume} // 声音的放大倍数，0 代表没有声音，就是静音muted, 1 代表正常音量 normal，更大的数字表示放大的倍数
-        muted={false} // true代表静音，默认为false.
-        onLoad={onLoad} // 当视频加载完毕时的回调函数
-        onLoadStart={loadStart} // 当视频开始加载时的回调函数
-        onProgress={onProgress} //  进度控制，每250ms调用一次，以获取视频播放的进度
-        onEnd={onEnd} // 当视频播放完毕后的回调函数
-        repeat={false} //重复播放
+        ref={refPlayer} //实例;
+        style={styles.container}//样式;
+        rate={rate}//倍率;
+        paused={paused} // 控制暂停/播放，0 代表暂停paused, 1代表播放normal;
+        volume={volume} // 0静音, 1正常，其他数字表示放大倍数;
+        muted={false} // true静音，默认false;
+        onLoad={onLoad} // 加载完毕时回调;
+        onLoadStart={loadStart} // 视频开始加载回调;
+        onProgress={onProgress} // 进度实时回调;
+        onEnd={onEnd} // 视频播放完毕回调函数;
+        repeat={false} //重复播放;
         resizeMode={resizeMode} //嵌套方式;
+        onError={onError} // 错误回调;
       />
     </View>
   );

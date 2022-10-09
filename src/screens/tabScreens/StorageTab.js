@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, Button, StyleSheet, Alert, Image } from 'react-native';
+import { View, Button, StyleSheet, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-const DiscoveryTab = ({ navigation, route }) => {
+const DiscoveryTab = ({ navigation}) => {
   const [userInfo] = useState({
     user: 'Dingdang',
     token: 'TYWU8728787392HU787266UYW77622',

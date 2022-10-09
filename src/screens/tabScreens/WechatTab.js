@@ -1,10 +1,9 @@
-import { Fragment, useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import {
   TouchableOpacity,
   SafeAreaView,
   ScrollView,
   StyleSheet,
-  StatusBar,
   Platform,
   View,
   Text,
@@ -24,10 +23,9 @@ const WechatTab = ({ navigation }) => {
   const [isWXAppSupportApi, setIsWXAppSupportApi] = useState(false);
   const { state } = useContext(ContentContext);
   useEffect(() => {
-    //WeChat.registerApp('appid', 'universalLink');
     //appid和secretID/在微信开发平台申请(https://open.weixin.qq.com/)universalLink就是填写的申请资料;
     //必须与申请的数据保持一致才能进行注册成功,否则返回false;
-    WeChat.registerApp("wx9013ae9aee782bfc", "https://dev.workbench.zhichetech.com/wechat/").then((res) => {
+    WeChat.registerApp("wx9013ae9aeexxxxxx", "https://www.baidu.com").then((res) => {
       console.log('weixin open sdk successfully integrated', res);
     }).catch(err => {
       console.log('weixin open sdk integration failed: ', err);
@@ -151,6 +149,7 @@ const WechatTab = ({ navigation }) => {
         if (error) console.log('error', error);
       })
   }
+  //login callBack
   const onWechatLogin = () => {
     let scope = 'snsapi_userinfo';
     let state = 'wechat_sdk_demo';
@@ -182,47 +181,45 @@ const WechatTab = ({ navigation }) => {
       })
   }
   return (
-    <Fragment>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.highlight}>
-                ApiVersion: <Text>{apiVersion}</Text>
-              </Text>
-              <TouchableOpacity
-                style={styles.button}
-                onPress={onOpenWechat}>
-                <Text>打开微信</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.button}
-                onPress={onWechatShareToFriend}>
-                <Text>分享至微信好友</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.button}
-                onPress={onWechatShareToMoment}>
-                <Text>分享至朋友圈</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.button}
-                onPress={onWechatLogin}>
-                <Text>微信登陆</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => wrapNavigationAuthRoute('InfoScreen', state?.routerPermissions, navigation)}>
-                <Text>Stack页面</Text>
-              </TouchableOpacity>
-            </View>
+
+    <SafeAreaView>
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        style={styles.scrollView}>
+        <View style={styles.body}>
+          <View style={styles.sectionContainer}>
+            <Text style={styles.highlight}>
+              ApiVersion: <Text>{apiVersion}</Text>
+            </Text>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={onOpenWechat}>
+              <Text>打开微信</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={onWechatShareToFriend}>
+              <Text>分享至微信好友</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={onWechatShareToMoment}>
+              <Text>分享至朋友圈</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={onWechatLogin}>
+              <Text>微信登陆</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => wrapNavigationAuthRoute('InfoScreen', state?.routerPermissions, navigation)}>
+              <Text>Stack页面</Text>
+            </TouchableOpacity>
           </View>
-        </ScrollView>
-      </SafeAreaView>
-    </Fragment>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 const styles = StyleSheet.create({

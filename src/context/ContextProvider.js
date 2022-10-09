@@ -28,7 +28,6 @@ const reducer = (state, action) => {
             return state;
     }
 };
-
 export const ContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, {
         colorValue: "",

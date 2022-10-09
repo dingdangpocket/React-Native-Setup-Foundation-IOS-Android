@@ -6,7 +6,5 @@ const Error = () => {
         </View>
     );
 };
-
 const styles = StyleSheet.create({});
-
 export default Error;

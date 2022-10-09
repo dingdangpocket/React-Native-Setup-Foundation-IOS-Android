@@ -1,8 +1,6 @@
 export const SET_USER_NAME ="SET_USER_NAME"
 export const GET_DATA ="GET_DATA"
 const API_URL="https://mocki.io/v1/93cb2438-ca16-47ba-81b1-4a9c1c182658"
-import {useSelector,useDispatch} from "react-redux";
-
 export const getData =()=>{
     try {
         return async dispatch =>{
@@ -25,8 +23,6 @@ export const getData =()=>{
         console.log("请求错误");
     }
 }
-
-
 export const setName=name=>dispatch=>{
     dispatch({
         type:SET_USER_NAME,

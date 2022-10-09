@@ -1,19 +1,15 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   View,
   Text,
-  Alert,
-  Button,
   StyleSheet,
-  TouchableOpacity,
   Dimensions,
 } from 'react-native';
 import {
   Camera,
-  VideoFileType,
   useCameraDevices,
 } from 'react-native-vision-camera';
-const EventTab = ({navigation, route}) => {
+const EventTab = () => {
   const refCamera = useRef(null);
   const devices = useCameraDevices('wide-angle-camera');
   const device = devices.back;
@@ -69,7 +65,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
-
   flipButton: {
     flex: 1,
     marginTop: 20,
