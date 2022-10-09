@@ -1,5 +1,13 @@
 # React-Native-Setup-Full
 React-Native-Setup-Full
+
+
+```js
+底座集成
+```
+
+```js
+React-Native-Setup-Full
 SDK\NDK\JDK\
 IOS\cocoapods\
 权限配置
@@ -14,3 +22,5 @@ Camera集成
 AsyncStorage集成
 微信分享
 微信登陆
+```
+
