@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -12,15 +12,15 @@ import {
 } from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
 
-const HomeTab = ({navigation}) => {
+const HomeTab = ({ navigation }) => {
   const [current, setCurrent] = useState(0);
   const [optionList] = useState([
-    {id: 0, content: '关注'},
-    {id: 1, content: '精选'},
-    {id: 2, content: '热门'},
-    {id: 3, content: '示例'},
-    {id: 4, content: '理论'},
-    {id: 5, content: '问题'},
+    { id: 0, content: '关注' },
+    { id: 1, content: '精选' },
+    { id: 2, content: '热门' },
+    { id: 3, content: '示例' },
+    { id: 4, content: '理论' },
+    { id: 5, content: '问题' },
   ]);
   //定位-内部实现是通过HTML5的navigator;
   const requestLocationPermission = async (success, failure) => {
@@ -123,7 +123,7 @@ const HomeTab = ({navigation}) => {
           <View style={styles.optionAreaRight}>
             <Image
               source={require('../../static/search.png')}
-              style={{width: 25, height: 25}}
+              style={{ width: 25, height: 25 }}
             />
           </View>
         </View>
@@ -133,31 +133,37 @@ const HomeTab = ({navigation}) => {
               activeOpacity={0.9}
               style={styles.btn}
               onPress={() => navigation.navigate('TheoryDescScreen')}>
-              <Text style={{color: 'white'}}>网页集成</Text>
+              <Text style={{ color: 'white' }}>网页集成</Text>
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.9}
               style={styles.btn}
               onPress={() => navigation.navigate('IncidentDescScreen')}>
-              <Text style={{color: 'white'}}>视频集成</Text>
+              <Text style={{ color: 'white' }}>视频集成</Text>
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.9}
               style={styles.btn}
               onPress={() => getCurrentPosition()}>
-              <Text style={{color: 'white'}}>位置集成</Text>
+              <Text style={{ color: 'white' }}>位置集成</Text>
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.9}
               style={styles.btn}
               onPress={() => navigation.navigate('AudioScreen')}>
-              <Text style={{color: 'white'}}>音频集成</Text>
+              <Text style={{ color: 'white' }}>音频集成</Text>
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.9}
               style={styles.btn}
               onPress={() => navigation.navigate('ImagePicker')}>
-              <Text style={{color: 'white'}}>访问相册</Text>
+              <Text style={{ color: 'white' }}>访问相册</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              activeOpacity={0.9}
+              style={styles.btn}
+              onPress={() => navigation.navigate('ImageSaveScreen')}>
+              <Text style={{ color: 'white' }}>保存图片</Text>
             </TouchableOpacity>
           </View>
         ) : null}

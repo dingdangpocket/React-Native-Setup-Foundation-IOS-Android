@@ -7,8 +7,8 @@
 		<key>CFBundleDisplayName</key>
 		<string>AwesomeTSProject</string>
 		<key>CFBundleExecutable</key>
-	
-	
+
+
 		<string>$(EXECUTABLE_NAME)</string>
 		<key>CFBundleIdentifier</key>
 		<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
@@ -52,13 +52,13 @@
 		<key>NSAppTransportSecurity</key>
 		<dict>
 			<key>NSAllowsArbitraryLoads</key>
-			<true/>
+			<true />
 			<key>NSExceptionDomains</key>
 			<dict>
 				<key>localhost</key>
 				<dict>
 					<key>NSExceptionAllowsInsecureHTTPLoads</key>
-					<true/>
+					<true />
 				</dict>
 			</dict>
 		</dict>

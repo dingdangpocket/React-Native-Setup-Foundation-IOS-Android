@@ -11,11 +11,13 @@
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.17.10",
+    "@react-native-community/cameraroll": "^4.1.2",
     "@react-native-community/geolocation": "^3.0.1",
     "@react-native/normalize-color": "^2.0.0",
     "@react-navigation/bottom-tabs": "^5.x",
     "@react-navigation/native": "^5.x",
     "@react-navigation/stack": "^5.x",
+    "fbjs": "^3.0.4",
     "react": "17.0.2",
     "react-native": "0.66.4",
     "react-native-gesture-handler": "^2.1.1",
@@ -29,7 +31,8 @@
     "react-native-wechat-lib": "^1.1.26",
     "react-redux": "^7.2.6",
     "redux": "^4.1.2",
-    "redux-thunk": "^2.4.1"
+    "redux-thunk": "^2.4.1",
+    "rn-fetch-blob": "^0.12.0"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
