@@ -11,7 +11,6 @@ import {
   Alert,
   Linking
 } from 'react-native';
-import { Header, Colors } from 'react-native/Libraries/NewAppScreen';
 import * as WeChat from 'react-native-wechat-lib';
 
 const MineTab = () => {
@@ -63,8 +62,8 @@ const MineTab = () => {
       Alert.alert(error.message);
     }) : Alert.alert('没有安装微信，请安装之后重试');
   }
-  const installWechat = () => {
-    let WeChatUrl = 'itms-apps://itunes.apple.com/cn/app/%E5%BE%AE%E4%BF%A1/id414478124?mt=8';
+  const installWechat = (url) => {
+    let WeChatUrl = url;
     Linking.canOpenURL(WeChatUrl)
       .then((supported) => {
         if (!supported) {
@@ -170,10 +169,11 @@ const MineTab = () => {
           Platform.OS == 'ios' ?
             Alert.alert('没有安装微信', '是否安装微信？', [
               { text: '取消' },
-              { text: '确定', onPress: () => installWechat() }
+              { text: '确定', onPress: () => installWechat('itms-apps://itunes.apple.com/cn/app/%E5%BE%AE%E4%BF%A1/id414478124?mt=8') }
             ]) :
             Alert.alert('没有安装微信', '请先安装微信客户端在进行登录', [
-              { text: '确定' }
+              { text: '取消' },
+              { text: '确定', onPress: () => installWechat("https://dldir1.qq.com/weixin/android/weixin8028android2240.apk") }
             ])
         }
       })
@@ -185,7 +185,6 @@ const MineTab = () => {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-          <Header />
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
               <Text style={styles.highlight}>
@@ -220,10 +219,10 @@ const MineTab = () => {
 }
 const styles = StyleSheet.create({
   scrollView: {
-    backgroundColor: Colors.lighter,
+    backgroundColor: "white",
   },
   body: {
-    backgroundColor: Colors.white,
+    backgroundColor: "white",
   },
   sectionContainer: {
     marginTop: 32,
@@ -232,7 +231,7 @@ const styles = StyleSheet.create({
   highlight: {
     fontSize: 24,
     fontWeight: '600',
-    color: Colors.black,
+    color: "black",
     textAlign: 'center',
   },
   button: {
@@ -243,7 +242,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     alignItems: 'center',
     justifyContent: 'center',
-    borderColor: Colors.black,
+    borderColor: "black",
   },
 });
 export default MineTab;
