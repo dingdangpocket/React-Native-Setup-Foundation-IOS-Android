@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useContext,useEffect } from 'react';
 import {
   View,
   Text,
@@ -11,8 +11,18 @@ import {
   Alert,
 } from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
+import { ContentContext } from "../../context/ContextProvider";
 
 const HomeTab = ({ navigation }) => {
+  const { state, dispatch } = useContext(ContentContext);
+  useEffect(() => {
+    dispatch({
+      type: "userRouterPermissions",
+      payload: [
+        "InfoScreen",
+      ],
+    });
+  }, []);
   const [current, setCurrent] = useState(0);
   const [optionList] = useState([
     { id: 0, content: '集成' },

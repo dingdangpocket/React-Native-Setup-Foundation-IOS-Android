@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect, useState, useContext } from 'react';
 import {
   TouchableOpacity,
   SafeAreaView,
@@ -12,14 +12,17 @@ import {
   Linking
 } from 'react-native';
 import * as WeChat from 'react-native-wechat-lib';
+import wrapNavigationAuthRoute from "../../functions/wrapNavigationAuthRoute"
+import { ContentContext } from "../../context/ContextProvider";
 
-const MineTab = () => {
+const WechatTab = ({ navigation }) => {
   const [appid] = useState("wx9013ae9aee782bfc");
   const [secretID] = useState("7a9ebc6f2902f9648989382ewe");
   const [apiVersion, setApiVersion] = useState(null);
   const [isWXAppInstalled, setIsWXAppInstalled] = useState(true);
   const [wxAppInstallUrl, setWxAppInstallUrl] = useState(null);
   const [isWXAppSupportApi, setIsWXAppSupportApi] = useState(false);
+  const { state } = useContext(ContentContext);
   useEffect(() => {
     //WeChat.registerApp('appid', 'universalLink');
     //appid和secretID/在微信开发平台申请(https://open.weixin.qq.com/)universalLink就是填写的申请资料;
@@ -210,6 +213,11 @@ const MineTab = () => {
                 onPress={onWechatLogin}>
                 <Text>微信登陆</Text>
               </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => wrapNavigationAuthRoute('InfoScreen', state?.routerPermissions, navigation)}>
+                <Text>Stack页面</Text>
+              </TouchableOpacity>
             </View>
           </View>
         </ScrollView>
@@ -245,4 +253,4 @@ const styles = StyleSheet.create({
     borderColor: "black",
   },
 });
-export default MineTab;
+export default WechatTab;

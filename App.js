@@ -1,20 +1,23 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Image, StyleSheet, SafeAreaView } from 'react-native';
 import IncidentDescScreen from './src/screens/home/IncidentDescScreen';
 import TheoryDescScreen from './src/screens/home/TheoryDescScreen';
 import ImageSaveScreen from './src/screens/home/ImageSaveScreen';
 import ImagePicker from './src/screens/home/ImagePicker';
 import AudioScreen from './src/screens/home/AudioScreen';
-import StackScreen from './src/screens/home/StackScreen';
+import Error from './src/screens/error/Error';
+import StackScreen from './src/screens/storage/StackScreen';
+import InfoScreen from './src/screens/wechat/InfoScreen';
 import HomeTab from './src/screens/tabScreens/HomeTab';
-import DiscoveryTab from './src/screens/tabScreens/DiscoveryTab';
-import MineTab from './src/screens/tabScreens/MineTab';
-import EventTab from './src/screens/tabScreens/EventTab';
+import StorageTab from './src/screens/tabScreens/StorageTab';
+import WechatTab from './src/screens/tabScreens/WechatTab';
+import CameraTab from './src/screens/tabScreens/CameraTab';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Provider } from 'react-redux';
 import { Store } from './src/redux/store';
+import { ContextProvider } from "./src/context/ContextProvider";
 import { LogBox } from 'react-native';
 LogBox.ignoreLogs(['new NativeEventEmitter']);
 
@@ -25,25 +28,31 @@ const HomeTabRoutes = [
   {
     name: 'HomeTab',
     component: HomeTab,
-    option: { title: '首页' },
+    option: { title: 'Home' },
   },
   {
-    name: 'DiscoveryTab',
-    component: DiscoveryTab,
-    option: { title: '探索' },
+    name: 'StorageTab',
+    component: StorageTab,
+    option: { title: 'Storage' },
   },
   {
-    name: 'EventTab',
-    component: EventTab,
-    option: { title: '活动' },
+    name: 'CameraTab',
+    component: CameraTab,
+    option: { title: 'Camera' },
   },
   {
-    name: 'MineTab',
-    component: MineTab,
-    option: { title: '我的' },
+    name: 'WechatTab',
+    component: WechatTab,
+    option: { title: 'Wechat' },
   },
 ];
-
+const StorageStackRoutes = [
+  {
+    name: 'StackScreen',
+    component: StackScreen,
+    option: { title: 'StackPages' },
+  }
+];
 const HomeStackRoutes = [
   {
     name: 'TheoryDescScreen',
@@ -65,17 +74,35 @@ const HomeStackRoutes = [
     component: ImagePicker,
     option: { title: '访问相机集成' },
   },
-  {
-    name: 'StackScreen',
-    component: StackScreen,
-    option: { title: 'StackPages' },
-  },
+
   {
     name: 'ImageSaveScreen',
     component: ImageSaveScreen,
     option: { title: '图片保存' },
   }
 ];
+const CameraStackRoutes = [];
+const WechatStackRoutes = [
+  {
+    name: 'InfoScreen',
+    component: InfoScreen,
+    option: { title: 'InfoScreen' },
+  }
+];
+const ErrorStackRoutes = [
+  {
+    name: 'Error',
+    component: Error,
+    option: { title: '错误页面' },
+  }
+];
+const containRoutes = [
+  ...HomeStackRoutes,
+  ...StorageStackRoutes,
+  ...WechatStackRoutes,
+  ...CameraStackRoutes,
+  ...ErrorStackRoutes
+]
 
 const HomeTabs = () => {
   return (
@@ -96,7 +123,7 @@ const HomeTabs = () => {
                 style={{ width: 27.5, height: 25 }}
               />
             );
-          } else if (route.name === 'DiscoveryTab') {
+          } else if (route.name === 'StorageTab') {
             icon = focused ? (
               <Image
                 source={require('./src/static/my1.png')}
@@ -108,7 +135,7 @@ const HomeTabs = () => {
                 style={{ width: 29, height: 25 }}
               />
             );
-          } else if (route.name == 'EventTab') {
+          } else if (route.name == 'CameraTab') {
             icon = focused ? (
               <Image
                 source={require('./src/static/my1.png')}
@@ -120,7 +147,7 @@ const HomeTabs = () => {
                 style={{ width: 29, height: 25 }}
               />
             );
-          } else if (route.name == 'MineTab') {
+          } else if (route.name == 'WechatTab') {
             icon = focused ? (
               <Image
                 source={require('./src/static/my1.png')}
@@ -150,33 +177,37 @@ const HomeTabs = () => {
   );
 };
 
+
+
 const App = () => {
   return (
     <Provider store={Store}>
-      <SafeAreaView style={styles.container}>
-        <NavigationContainer>
-          <Stack.Navigator>
-            {/* 将tab页装载在Stack页面中; */}
-            <Stack.Screen
-              name="Home"
-              component={HomeTabs}
-              options={{ header: () => null, title: '首页' }}
-            />
-            {HomeStackRoutes.map(item => {
-              return (
-                <Stack.Screen
-                  key={item.name}
-                  name={item.name}
-                  options={{
-                    title: item.option.title,
-                  }}
-                  component={item.component}
-                />
-              );
-            })}
-          </Stack.Navigator>
-        </NavigationContainer>
-      </SafeAreaView>
+      <ContextProvider>
+        <SafeAreaView style={styles.container}>
+          <NavigationContainer>
+            <Stack.Navigator>
+              {/* 将tab页装载在根节点Stack页面; */}
+              <Stack.Screen
+                name="Home"
+                component={HomeTabs}
+                options={{ header: () => null, title: '首页' }}
+              />
+              {containRoutes.map(item => {
+                return (
+                  <Stack.Screen
+                    key={item.name}
+                    name={item.name}
+                    options={{
+                      title: item.option.title,
+                    }}
+                    component={item.component}
+                  />
+                );
+              })}
+            </Stack.Navigator>
+          </NavigationContainer>
+        </SafeAreaView>
+      </ContextProvider>
     </Provider>
   );
 };
