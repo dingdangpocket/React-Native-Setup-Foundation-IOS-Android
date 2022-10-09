@@ -20,10 +20,8 @@ import { Store } from './src/redux/store';
 import { ContextProvider } from "./src/context/ContextProvider";
 import { LogBox } from 'react-native';
 LogBox.ignoreLogs(['new NativeEventEmitter']);
-
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-//核心库;
 const HomeTabRoutes = [
   {
     name: 'HomeTab',
@@ -96,7 +94,7 @@ const ErrorStackRoutes = [
     option: { title: '错误页面' },
   }
 ];
-const containRoutes = [
+const containStackRoutes = [
   ...HomeStackRoutes,
   ...StorageStackRoutes,
   ...WechatStackRoutes,
@@ -176,9 +174,6 @@ const HomeTabs = () => {
     </Tab.Navigator>
   );
 };
-
-
-
 const App = () => {
   return (
     <Provider store={Store}>
@@ -192,7 +187,7 @@ const App = () => {
                 component={HomeTabs}
                 options={{ header: () => null, title: '首页' }}
               />
-              {containRoutes.map(item => {
+              {containStackRoutes.map(item => {
                 return (
                   <Stack.Screen
                     key={item.name}

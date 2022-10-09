@@ -1,9 +1,8 @@
-import React, { useState,useContext,useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import {
   View,
   Text,
   StyleSheet,
-  Image,
   ScrollView,
   Dimensions,
   TouchableOpacity,
@@ -13,7 +12,7 @@ import {
 import Geolocation from '@react-native-community/geolocation';
 import { ContentContext } from "../../context/ContextProvider";
 const HomeTab = ({ navigation }) => {
-  const { state, dispatch } = useContext(ContentContext);
+  const { dispatch } = useContext(ContentContext);
   useEffect(() => {
     dispatch({
       type: "userRouterPermissions",
@@ -92,10 +91,9 @@ const HomeTab = ({ navigation }) => {
       } catch (error) {
         console.log('未被授权', error);
       }
-      //IOS如果点了不允许授权,getCurrentPosition自动会进入Error;
+      //IOS如果不允许授权,getCurrentPosition自动会进入Error;
     }
   };
-
   return (
     <View>
       <ScrollView horizontal={false}>
