@@ -1,4 +1,4 @@
-import React, { Fragment, Component, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import {
   TouchableOpacity,
   SafeAreaView,
@@ -24,14 +24,15 @@ const MineTab = () => {
   useEffect(() => {
     //WeChat.registerApp('appid', 'universalLink');
     //appid和secretID/在微信开发平台申请(https://open.weixin.qq.com/)universalLink就是填写的申请资料;
-    WeChat.registerApp("wx9013ae9aee782bfc", "https://www.baidu.com/").then((res) => {
+    //必须与申请的数据保持一致才能进行注册成功,否则返回false;
+    WeChat.registerApp("wx9013ae9aee782bfc", "https://dev.workbench.zhichetech.com/wechat/").then((res) => {
       console.log('weixin open sdk successfully integrated', res);
     }).catch(err => {
       console.log('weixin open sdk integration failed: ', err);
     });
     const initWxApiStatus = async () => {
       const apiVersion = await WeChat.getApiVersion()
-      const wxAppInstallUrl = Platform.OS === 'ios' ? await WeChat.getWXAppInstallUrl() : null;
+      const wxAppInstallUrl = Platform.OS === 'ios' ? await WeChat.getWXAppInstallUrl() : "https://dldir1.qq.com/weixin/android/weixin8028android2240.apk";
       const isWXAppSupportApi = await WeChat.isWXAppSupportApi()
       const isWXAppInstalled = await WeChat.isWXAppInstalled()
       console.log("apiVersion", apiVersion, "wxAppInstallUrl", wxAppInstallUrl, "isWXAppSupportApi", isWXAppSupportApi, "isWXAppInstalled", isWXAppInstalled);
