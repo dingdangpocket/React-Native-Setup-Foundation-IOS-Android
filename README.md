@@ -1,6 +1,4 @@
-# React-Native-Setup-Full
-React-Native-Setup-Full
-
+# React-Native-Setup-Foundation-IOS-Android
 
 ```js
 底座集成
