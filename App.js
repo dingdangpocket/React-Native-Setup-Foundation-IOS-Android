@@ -174,16 +174,29 @@ const HomeTabs = () => {
     </Tab.Navigator>
   );
 };
+
+const linking = {
+  prefixes: ['foundation://'],
+  config: {
+    initialRouteName: 'HomeTabs',
+    screens: {
+      InfoScreen: {
+        path: 'InfoScreen/:id'
+      }
+    }
+  }
+};
 const App = () => {
   return (
     <Provider store={Store}>
       <ContextProvider>
         <SafeAreaView style={styles.container}>
-          <NavigationContainer>
+          <NavigationContainer
+            linking={linking}>
             <Stack.Navigator>
               {/* 将tab页装载在根节点Stack页面; */}
               <Stack.Screen
-                name="Home"
+                name="HomeTabs"
                 component={HomeTabs}
                 options={{ header: () => null, title: '首页' }}
               />
@@ -203,7 +216,7 @@ const App = () => {
           </NavigationContainer>
         </SafeAreaView>
       </ContextProvider>
-    </Provider>
+    </Provider >
   );
 };
 const styles = StyleSheet.create({

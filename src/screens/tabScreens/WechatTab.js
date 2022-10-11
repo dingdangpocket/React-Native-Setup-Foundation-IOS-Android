@@ -216,6 +216,16 @@ const WechatTab = ({ navigation }) => {
               onPress={() => wrapNavigationAuthRoute('InfoScreen', state?.routerPermissions, navigation)}>
               <Text>权限页面Stack页面</Text>
             </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => Linking.openURL("foundation://InfoScreen/10")}>
+              <Text>DeepLinking-InfoScreen</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => Linking.openURL("myapp://")}>
+              <Text>DeepLinking其他应用</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
