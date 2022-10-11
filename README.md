@@ -1,10 +1,6 @@
 # React-Native-Setup-Foundation-IOS-Android
 
 ```js
-底座集成
-```
-
-```js
 React-Native-Setup-Foundation
 SDK\NDK\JDK\
 IOS\cocoapods\
