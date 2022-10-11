@@ -166,7 +166,7 @@ const HomeTab = ({ navigation }) => {
               activeOpacity={0.9}
               style={styles.btn}
               onPress={() => getCurrentPosition()}>
-              <Text style={{ color: 'white' }}>位置集成</Text>
+              <Text style={{ color: 'white' }}>定位集成</Text>
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.9}

@@ -53,7 +53,6 @@ const ImageSaveScreen = () => {
     };
 
     const onDownload = async () => {
-        // if device is android you have to ensure you have permission
         if (Platform.OS === 'android') {
             const granted = await getPermissionAndroid();
             if (!granted) {
