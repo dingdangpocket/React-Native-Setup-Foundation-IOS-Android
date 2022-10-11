@@ -5,7 +5,7 @@
 ```
 
 ```js
-React-Native-Setup-Full
+React-Native-Setup-Foundation
 SDK\NDK\JDK\
 IOS\cocoapods\
 权限配置
@@ -18,11 +18,12 @@ webView集成
 Video集成
 Audio集成
 SaveImage集成
-Camera集成
+VisionCamera集成
 AsyncStorage集成
 微信分享
 微信登陆
 Redux
 Context
+...
 ```
 
