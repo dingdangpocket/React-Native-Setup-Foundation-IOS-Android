@@ -5,6 +5,7 @@ import TheoryDescScreen from './src/screens/home/TheoryDescScreen';
 import ImageSaveScreen from './src/screens/home/ImageSaveScreen';
 import ImagePicker from './src/screens/home/ImagePicker';
 import AudioScreen from './src/screens/home/AudioScreen';
+import Login from './src/screens/login/Login';
 import Error from './src/screens/error/Error';
 import StackScreen from './src/screens/storage/StackScreen';
 import InfoScreen from './src/screens/wechat/InfoScreen';
@@ -195,6 +196,11 @@ const App = () => {
             linking={linking}>
             <Stack.Navigator>
               {/* 将tab页装载在根节点Stack页面; */}
+              <Stack.Screen
+                name="Login"
+                component={Login}
+                options={{ header: () => null, title: '登陆' }}
+              />
               <Stack.Screen
                 name="HomeTabs"
                 component={HomeTabs}
