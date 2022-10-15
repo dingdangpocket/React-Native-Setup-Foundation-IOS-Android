@@ -1,7 +1,7 @@
 import { Text, TouchableOpacity } from 'react-native';
-const CustomButton = ({ onPress, title, titleColor, fontSize, width, height, backgroundColor, borderRadius, marginTop = 0, marginBottom = 0, marginLeft = 0, marginRight = 0, align }) => {
+const CustomButton = ({ disabled, onPress, title, titleColor, fontSize, width, height, backgroundColor, borderRadius, marginTop = 0, marginBottom = 0, marginLeft = 0, marginRight = 0, align }) => {
     return (
-        <TouchableOpacity onPress={onPress} style={{
+        <TouchableOpacity disabled={disabled} onPress={onPress} style={{
             width: width,
             height: height,
             backgroundColor: backgroundColor,

@@ -1,18 +1,40 @@
 import { View, Text, Image, TextInput, useWindowDimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Center, RowCenter, Left, Right, BottomCenter, } from "../../commonStyle/commonStyle"
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import CustomButton from "../../components/CustomButton"
 const Login = () => {
     const navigation = useNavigation();
     const { width, height } = useWindowDimensions();
     const [phoneNum, onChangePhoneNum] = useState("");
     const [accessCode, onChangeAccessCode] = useState("");
+    const [countDown, setCountDown] = useState(31);
+    const [btnDisabled, setBtnDisabled] = useState(false);
+    const [btnContent, setBtnContent] = useState('获取验证码');
+    const [initIntercept, setInitIntercept] = useState(false);
+    useEffect(() => {
+        if (initIntercept) {
+            if (countDown == 0) {
+                setBtnContent('获取验证码');
+                setBtnDisabled(false);
+                return;
+            }
+            if (countDown > 0 && countDown < 31) setBtnDisabled(true);
+            const Interval = setInterval(() => {
+                setCountDown(countDown - 1);
+                setBtnContent(`${countDown - 1}s后重发`);
+            }, 1000);
+            return () => clearInterval(Interval);
+        }
+    });
+    const onGetAccessCode = () => {
+        setInitIntercept(true);
+        setCountDown(31);
+    };
     const onLogin = () => {
         console.log("onLoginParams", phoneNum, accessCode);
-        navigation.navigate("HomeTabs")
+        // navigation.navigate("HomeTabs")
     }
-    const onGetAccessCode = () => { };
     return (
         <View style={{ flex: 1 }}>
             <View style={{
@@ -67,7 +89,8 @@ const Login = () => {
                         maxLength={6}
                     />
                     <CustomButton
-                        title="获取验证码"
+                        disabled={btnDisabled}
+                        title={btnContent}
                         titleColor="white"
                         fontSize={11}
                         width={width * 0.2}
