@@ -1,8 +1,9 @@
 import { View, Text, Image, TextInput, useWindowDimensions, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Center, RowCenter, Left, Right, BottomCenter, } from "../../commonStyle/commonStyle"
+import { Center, RowCenter, Left, Right, BottomCenter, } from "src/commonStyle/commonStyle"
 import { useState, useEffect } from 'react';
 import CustomButton from "../../components/CustomButton"
+import ImageBackground from 'react-native/Libraries/Image/ImageBackground';
 const Login = () => {
     const navigation = useNavigation();
     const { width, height } = useWindowDimensions();
@@ -48,84 +49,82 @@ const Login = () => {
             ]);
         }
     }
+    const commonInputStyle = {
+        width: width * 0.88,
+        height: 80,
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "rgba(30,30,30,0.7)"
+    }
     return (
         <View style={{ flex: 1 }}>
-            <View style={{
-                width: '100%',
-                height: '100%',
-                backgroundColor: 'rgba(10,10,10,0.9)',
-                ...Center
-            }}>
+            <ImageBackground style={{ flex: 1 }} resizeMode="cover" source={require("../../static/C1.jpg")}>
                 <View style={{
-                    width: width * 0.88,
-                    height: 80,
-                    borderRadius: 10,
-                    flexDirection: "row",
-                    ...Center,
-                    backgroundColor: "rgba(30,30,30,0.6)"
+                    flex: 1,
+                    backgroundColor: 'rgba(10,10,10,0.65)',
+                    ...Center
                 }}>
-                    <Text style={{ marginRight: 5, color: "white" }}>+86</Text>
-                    <TextInput
-                        style={{ width: width * 0.7, borderBottomWidth: 2, borderColor: "rgba(255,255,255,0.8)", color: "white" }}
-                        onChangeText={(value) => {
-                            const authValue = value.replace(/[^\d]+/, '');
-                            onChangePhoneNum(authValue)
-                        }}
-                        value={phoneNum}
-                        underlineColorAndroid="transparent"
-                        placeholder="请输入手机号"
-                        placeholderTextColor={"white"}
-                        keyboardType="number-pad"
-                        maxLength={11}
-                    />
-                </View>
-                <View style={{
-                    width: width * 0.88,
-                    height: 80,
-                    borderRadius: 10,
-                    flexDirection: "row",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    backgroundColor: "rgba(30,30,30,0.6)"
-                }}>
-                    <TextInput
-                        style={{ width: width * 0.38, borderBottomWidth: 2, borderColor: "rgba(255,255,255,0.6)", color: "white" }}
-                        onChangeText={(value) => {
-                            const authValue = value.replace(/[^\d]+/, '');
-                            onChangeAccessCode(authValue)
-                        }}
-                        value={accessCode}
-                        underlineColorAndroid="transparent"
-                        placeholder="请输入验证码"
-                        placeholderTextColor={"white"}
-                        keyboardType="number-pad"
-                        maxLength={6}
-                    />
+                    <View style={{
+                        ...commonInputStyle
+                    }}>
+                        <Text style={{ marginRight: 5, color: "white" }}>+86</Text>
+                        <TextInput
+                            style={{ width: width * 0.7, borderBottomWidth: 2, borderColor: "rgba(255,255,255,0.8)", color: "white" }}
+                            onChangeText={(value) => {
+                                const authValue = value.replace(/[^\d]+/, '');
+                                onChangePhoneNum(authValue)
+                            }}
+                            value={phoneNum}
+                            underlineColorAndroid="transparent"
+                            placeholder="请输入手机号"
+                            placeholderTextColor={"white"}
+                            keyboardType="number-pad"
+                            maxLength={11}
+                        />
+                    </View>
+                    <View style={{
+                        ...commonInputStyle
+                    }}>
+                        <TextInput
+                            style={{ width: width * 0.38, borderBottomWidth: 2, borderColor: "rgba(255,255,255,0.6)", color: "white" }}
+                            onChangeText={(value) => {
+                                const authValue = value.replace(/[^\d]+/, '');
+                                onChangeAccessCode(authValue)
+                            }}
+                            value={accessCode}
+                            underlineColorAndroid="transparent"
+                            placeholder="请输入验证码"
+                            placeholderTextColor={"white"}
+                            keyboardType="number-pad"
+                            maxLength={6}
+                        />
+                        <CustomButton
+                            disabled={btnDisabled}
+                            title={btnContent}
+                            titleColor={btnDisabled ? "rgba(255,255,255,0.75)" : "white"}
+                            fontSize={11}
+                            width={width * 0.2}
+                            height={35}
+                            backgroundColor={btnDisabled ? "rgba(100,100,100,0.9)" : "rgba(255,51,0,0.5)"}
+                            borderRadius={2.5}
+                            marginLeft={15}
+                            align={Center}
+                            onPress={onGetAccessCode} />
+                    </View>
                     <CustomButton
-                        disabled={btnDisabled}
-                        title={btnContent}
-                        titleColor={btnDisabled ? "rgba(255,255,255,0.75)" : "white"}
-                        fontSize={11}
-                        width={width * 0.2}
-                        height={35}
-                        backgroundColor={btnDisabled ? "rgba(100,100,100,0.9)" : "rgba(255,51,0,0.5)"}
+                        title="登陆"
+                        titleColor="white"
+                        fontSize={18}
+                        width={width * 0.85}
+                        height={50}
+                        backgroundColor="rgba(255,51,0,0.7)"
                         borderRadius={2.5}
-                        marginLeft={15}
+                        marginTop={10}
                         align={Center}
-                        onPress={onGetAccessCode} />
+                        onPress={onLogin} />
                 </View>
-                <CustomButton
-                    title="登陆"
-                    titleColor="white"
-                    fontSize={18}
-                    width={width * 0.85}
-                    height={50}
-                    backgroundColor="rgba(255,51,0,0.7)"
-                    borderRadius={2.5}
-                    marginTop={10}
-                    align={Center}
-                    onPress={onLogin} />
-            </View>
+            </ImageBackground>
         </View >
     );
 };
