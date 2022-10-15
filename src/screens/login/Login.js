@@ -8,7 +8,7 @@ const Login = () => {
     const { width, height } = useWindowDimensions();
     const [phoneNum, onChangePhoneNum] = useState("");
     const [accessCode, onChangeAccessCode] = useState("");
-    const [countDown, setCountDown] = useState(31);
+    const [countDown, setCountDown] = useState(5);
     const [btnDisabled, setBtnDisabled] = useState(false);
     const [btnContent, setBtnContent] = useState('获取验证码');
     const [initIntercept, setInitIntercept] = useState(false);
@@ -19,7 +19,7 @@ const Login = () => {
                 setBtnDisabled(false);
                 return;
             }
-            if (countDown > 0 && countDown < 31) setBtnDisabled(true);
+            if (countDown > 0 && countDown <= 5) setBtnDisabled(true);
             const Interval = setInterval(() => {
                 setCountDown(countDown - 1);
                 setBtnContent(`${countDown - 1}s后重发`);
@@ -29,7 +29,9 @@ const Login = () => {
     });
     const onGetAccessCode = () => {
         setInitIntercept(true);
-        setCountDown(31);
+        setBtnDisabled(true);
+        setBtnContent(`5s后重发`);
+        setCountDown(5);
     };
     const onLogin = () => {
         console.log("onLoginParams", phoneNum, accessCode);
@@ -44,12 +46,12 @@ const Login = () => {
                 ...Center
             }}>
                 <View style={{
-                    width: width * 0.85,
+                    width: width * 0.88,
                     height: 80,
                     borderRadius: 10,
                     flexDirection: "row",
                     ...Center,
-                    // backgroundColor:"red"
+                    backgroundColor: "rgba(30,30,30,0.6)"
                 }}>
                     <Text style={{ marginRight: 5, color: "white" }}>+86</Text>
                     <TextInput
@@ -67,16 +69,16 @@ const Login = () => {
                     />
                 </View>
                 <View style={{
-                    width: width * 0.85,
+                    width: width * 0.88,
                     height: 80,
                     borderRadius: 10,
                     flexDirection: "row",
                     justifyContent: "center",
                     alignItems: "center",
-                    // backgroundColor:"red"
+                    backgroundColor: "rgba(30,30,30,0.6)"
                 }}>
                     <TextInput
-                        style={{ width: width * 0.35, borderBottomWidth: 2, borderColor: "rgba(255,255,255,0.6)", color: "white" }}
+                        style={{ width: width * 0.38, borderBottomWidth: 2, borderColor: "rgba(255,255,255,0.6)", color: "white" }}
                         onChangeText={(value) => {
                             const authValue = value.replace(/[^\d]+/, '');
                             onChangeAccessCode(authValue)
@@ -91,11 +93,11 @@ const Login = () => {
                     <CustomButton
                         disabled={btnDisabled}
                         title={btnContent}
-                        titleColor="white"
+                        titleColor={btnDisabled ? "rgba(255,255,255,0.75)" : "white"}
                         fontSize={11}
                         width={width * 0.2}
                         height={35}
-                        backgroundColor="rgba(255,51,0,0.6)"
+                        backgroundColor={btnDisabled ? "rgba(100,100,100,0.9)" : "rgba(255,51,0,0.5)"}
                         borderRadius={2.5}
                         marginLeft={15}
                         align={Center}
