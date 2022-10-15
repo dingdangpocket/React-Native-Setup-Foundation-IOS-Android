@@ -1,4 +1,4 @@
-import { View, Text, Image, TextInput, useWindowDimensions } from 'react-native';
+import { View, Text, Image, TextInput, useWindowDimensions, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Center, RowCenter, Left, Right, BottomCenter, } from "../../commonStyle/commonStyle"
 import { useState, useEffect } from 'react';
@@ -35,8 +35,18 @@ const Login = () => {
         setCountDown(5);
     };
     const onLogin = () => {
-        console.log("onLoginParams", phoneNum, accessCode);
-        // navigation.navigate("HomeTabs")
+        //api...
+        if (accessCode == 123456) {
+            navigation.navigate("HomeTabs")
+        } else {
+            Alert.alert('提示', "手机验证码错误", [
+                {
+                    text: '确认',
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'default',
+                },
+            ]);
+        }
     }
     return (
         <View style={{ flex: 1 }}>
