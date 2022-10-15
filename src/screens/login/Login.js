@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, Image, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { Center, RowCenter, Left, Right, BottomCenter, } from "../../commonStyle/commonStyle"
+
+import { Center, RowCenter, Left, Right, BottomCenter, } from "src/commonStyle/commonStyle"
 
 const Login = () => {
     const navigation = useNavigation();
