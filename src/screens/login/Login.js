@@ -1,9 +1,8 @@
-import { View, Text, Image, TextInput, useWindowDimensions, Alert } from 'react-native';
+import { View, Text, Image, TextInput, useWindowDimensions, Alert, ImageBackground } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Center, RowCenter, Left, Right, BottomCenter, } from "src/commonStyle/commonStyle"
 import { useState, useEffect } from 'react';
 import CustomButton from "../../components/CustomButton"
-import ImageBackground from 'react-native/Libraries/Image/ImageBackground';
 const Login = () => {
     const navigation = useNavigation();
     const { width, height } = useWindowDimensions();
@@ -66,11 +65,19 @@ const Login = () => {
                     ...Center
                 }}>
                     <View style={{
+                        width: width * 0.88,
+                        height: 30,
+                        backgroundColor: "rgba(10,10,10,0.75)",
+                        ...Center,
+                    }}>
+                        <Text style={{ color: "white", fontSize: 10, color: "rgba(255,255,255,0.9)" }}>登陆探索中国极限</Text>
+                    </View>
+                    <View style={{
                         ...commonInputStyle
                     }}>
                         <Text style={{ marginRight: 5, color: "white" }}>+86</Text>
                         <TextInput
-                            style={{ width: width * 0.7, borderBottomWidth: 2, borderColor: "rgba(255,255,255,0.8)", color: "white" }}
+                            style={{ width: width * 0.7, borderBottomWidth: 2, borderColor: "rgba(255,255,255,0.6)", color: "white" }}
                             onChangeText={(value) => {
                                 const authValue = value.replace(/[^\d]+/, '');
                                 onChangePhoneNum(authValue)
@@ -122,7 +129,8 @@ const Login = () => {
                         borderRadius={2.5}
                         marginTop={10}
                         align={Center}
-                        onPress={onLogin} />
+                        onPress={onLogin}
+                    />
                 </View>
             </ImageBackground>
         </View >
