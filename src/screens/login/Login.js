@@ -78,7 +78,7 @@ const Login = () => {
                             value={phoneNum}
                             underlineColorAndroid="transparent"
                             placeholder="请输入手机号"
-                            placeholderTextColor={"white"}
+                            placeholderTextColor={"rgba(255,255,255,0.8)"}
                             keyboardType="number-pad"
                             maxLength={11}
                         />
@@ -95,7 +95,7 @@ const Login = () => {
                             value={accessCode}
                             underlineColorAndroid="transparent"
                             placeholder="请输入验证码"
-                            placeholderTextColor={"white"}
+                            placeholderTextColor={"rgba(255,255,255,0.8)"}
                             keyboardType="number-pad"
                             maxLength={6}
                         />
