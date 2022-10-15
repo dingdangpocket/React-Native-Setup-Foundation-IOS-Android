@@ -20,6 +20,7 @@ const Login = () => {
                 return;
             }
             if (countDown > 0 && countDown <= 5) setBtnDisabled(true);
+            //此处的初始间隔也在倒计时范围内;
             const Interval = setInterval(() => {
                 setCountDown(countDown - 1);
                 setBtnContent(`${countDown - 1}s后重发`);
