@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
 import { ContentContext } from "../../context/ContextProvider";
+import NavigationBar from 'react-native-navbar-color'
 const HomeTab = ({ navigation }) => {
   const { dispatch } = useContext(ContentContext);
   useEffect(() => {
@@ -20,6 +21,7 @@ const HomeTab = ({ navigation }) => {
         "InfoScreen",
       ],
     });
+    NavigationBar.setColor('white')
   }, []);
   const [current, setCurrent] = useState(0);
   const [optionList] = useState([
