@@ -35,7 +35,7 @@ build/
 node_modules/
 npm-debug.log
 yarn-error.log
-rn-fetch-blob
+# rn-fetch-blob
 
 # BUCK
 buck-out/
