@@ -3,6 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Center, RowCenter, Left, Right, BottomCenter, } from "src/commonStyle/commonStyle"
 import { useState, useEffect } from 'react';
 import CustomButton from "../../components/CustomButton"
+import NavigationBar from 'react-native-navbar-color'
 const Login = () => {
     const navigation = useNavigation();
     const { width, height } = useWindowDimensions();
@@ -12,6 +13,9 @@ const Login = () => {
     const [btnDisabled, setBtnDisabled] = useState(false);
     const [btnContent, setBtnContent] = useState('获取验证码');
     const [initIntercept, setInitIntercept] = useState(false);
+    useEffect(() => {
+        NavigationBar.setColor('#000000')
+    }, [])
     useEffect(() => {
         if (initIntercept) {
             if (countDown == 0) {
